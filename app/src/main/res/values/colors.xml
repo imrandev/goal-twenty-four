@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FAFAFA</color>
+    <color name="colorPrimaryDark">#FAFAFA</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="colorStandingCard">#E0C200</color>
+    <color name="colorTopCard">#0498DA</color>
+</resources>

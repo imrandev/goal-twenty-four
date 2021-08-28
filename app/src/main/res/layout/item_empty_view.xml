@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/tv_error_message"
+        android:padding="@dimen/_20sdp"
+        android:drawablePadding="@dimen/_3sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/darker_gray"
+        android:text="No Matches Available"
+        android:gravity="center"
+        android:fontFamily="@font/titillium_web_bold"
+        android:textSize="@dimen/_16sdp"
+        app:drawableTopCompat="@drawable/ic_junior_soccer" />
+
+</layout>

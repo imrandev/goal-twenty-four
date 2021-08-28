@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:padding="@dimen/_5sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/item_tv_group_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:fontFamily="@font/titillium_web_bold"
+                android:gravity="center"
+                android:text="GROUP A"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/item_header"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_tv_group_name">
+
+                <TextView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/titillium_web_bold"
+                    android:gravity="center"
+                    android:text="Club"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:layout_width="@dimen/_160sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/titillium_web_semibold"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/titillium_web_semibold"
+                    android:gravity="center"
+                    android:text="MP"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/titillium_web_semibold"
+                    android:gravity="center"
+                    android:text="W"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/titillium_web_semibold"
+                    android:gravity="center"
+                    android:text="D"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/titillium_web_semibold"
+                    android:gravity="center"
+                    android:text="L"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/titillium_web_semibold"
+                    android:gravity="center"
+                    android:text="GF"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/titillium_web_semibold"
+                    android:gravity="center"
+                    android:text="GA"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/titillium_web_semibold"
+                    android:gravity="center"
+                    android:text="GD"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/titillium_web_semibold"
+                    android:gravity="center"
+                    android:text="Pts"
+                    android:textSize="@dimen/_14sdp" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_cl_point_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_header"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </HorizontalScrollView>
+</layout>

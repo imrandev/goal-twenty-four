@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:id="@+id/rootView"
+        tools:context=".ui.team.TeamActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                app:expandedTitleGravity="top"
+                app:toolbarId="@+id/toolbar"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/iv_stadium"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_epl"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/black_transparent_gradient"
+                    app:layout_collapseMode="parallax" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"/>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_team_info_board"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_60sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_team_desc_title"
+                    android:text="Team Description"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/raleway"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/bottom_bar_separator"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tv_desc"
+                    android:text="@string/description"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway"
+                    android:padding="@dimen/_5sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_team_desc_title"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tv_social_title"
+                    android:text="Social Network"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/raleway"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/bottom_bar_separator"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_desc"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <HorizontalScrollView
+                    android:id="@+id/hs_social_network"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_social_title"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_8sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/ib_website"
+                            android:gravity="center"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:padding="@dimen/_5sdp"
+                            android:textSize="@dimen/_11sdp"
+                            android:fontFamily="@font/raleway"
+                            app:srcCompat="@drawable/ic_web"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/yellow_circle"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"/>
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/ib_facebook"
+                            android:gravity="center"
+                            android:padding="@dimen/_5sdp"
+                            android:textSize="@dimen/_11sdp"
+                            android:fontFamily="@font/raleway"
+                            app:srcCompat="@drawable/ic_facebook"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/yellow_circle"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"/>
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/ib_twitter"
+                            android:gravity="center"
+                            android:textSize="@dimen/_11sdp"
+                            android:fontFamily="@font/raleway"
+                            android:layout_margin="@dimen/_5sdp"
+                            app:srcCompat="@drawable/ic_twitter"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/yellow_circle"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"/>
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/ib_youtube"
+                            android:gravity="center"
+                            android:textSize="@dimen/_11sdp"
+                            android:fontFamily="@font/raleway"
+                            android:layout_margin="@dimen/_5sdp"
+                            app:srcCompat="@drawable/ic_youtube"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/yellow_circle"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"/>
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <TextView
+                    android:id="@+id/tv_location_title"
+                    android:text="Stadium"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/raleway"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/bottom_bar_separator"
+                    app:layout_constraintTop_toBottomOf="@+id/hs_social_network"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tv_stadium"
+                    android:text="London, UK"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway"
+                    android:padding="@dimen/_5sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_location_title"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tv_stadium_desc_title"
+                    android:text="Stadium Description"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/raleway"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/bottom_bar_separator"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_stadium"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tv_stadium_desc"
+                    android:text="@string/description"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway"
+                    android:padding="@dimen/_5sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_stadium_desc_title"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tv_player_title"
+                    android:text="Players"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/raleway"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/bottom_bar_separator"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_stadium_desc"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_players"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_player_title"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_team_top_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_anchor="@id/app_bar"
+            app:layout_anchorGravity="bottom|center">
+
+            <ImageView
+                android:id="@+id/iv_team_badge"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:background="#E0C200"
+                app:srcCompat="@drawable/ic_epl"
+                android:scaleType="fitCenter"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_team_name"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_42sdp"
+                android:textSize="@dimen/_20sdp"
+                android:textColor="@android:color/white"
+                android:text="Arsenal"
+                android:lines="1"
+                android:ellipsize="end"
+                android:padding="@dimen/_8sdp"
+                android:gravity="bottom"
+                android:fontFamily="@font/raleway"
+                app:layout_constraintTop_toTopOf="@+id/iv_team_badge"
+                app:layout_constraintStart_toEndOf="@+id/iv_team_badge"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_league_name"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                android:textSize="@dimen/_15sdp"
+                android:text="English Premier League"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="0dp"
+                android:gravity="bottom"
+                android:lines="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/raleway"
+                android:background="#0498DA"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toEndOf="@+id/iv_team_badge"
+                app:layout_constraintEnd_toEndOf="@+id/tv_team_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_team_name"/>
+
+            <TextView
+                android:id="@+id/tv_formed_year"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_28sdp"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:paddingEnd="0dp"
+                android:text="Formed 1982"
+                android:gravity="top"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/raleway"
+                android:background="#0498DA"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toEndOf="@+id/iv_team_badge"
+                app:layout_constraintEnd_toEndOf="@+id/tv_team_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_league_name"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_error_message"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Team Not Found"
+            android:fontFamily="@font/raleway"
+            android:gravity="center"
+            android:textSize="@dimen/_18sdp"
+            android:visibility="gone"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

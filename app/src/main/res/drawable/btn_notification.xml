@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true">
+        <layer-list>
+            <item android:drawable="@drawable/blue_rounded_background"/>
+            <item
+                android:gravity="start"
+                android:drawable="@drawable/ic_notifications"
+                android:left="@dimen/_5sdp"
+                android:top="@dimen/_8sdp"
+                android:bottom="@dimen/_8sdp"
+                />
+        </layer-list>
+    </item>
+
+    <item android:state_enabled="false">
+        <layer-list>
+            <item android:drawable="@drawable/white_smoke_rounded_background"/>
+            <item
+                android:gravity="start"
+                android:drawable="@drawable/ic_notifications_active"
+                android:left="@dimen/_5sdp"
+                android:top="@dimen/_8sdp"
+                android:bottom="@dimen/_8sdp"
+                />
+        </layer-list>
+    </item>
+</selector>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:padding="@dimen/_5sdp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:fontFamily="@font/titillium_web_semibold"
+                android:gravity="center"
+                android:text="Club"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:fontFamily="@font/raleway"
+                android:textSize="@dimen/_14sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_width="@dimen/_160sdp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:fontFamily="@font/titillium_web_semibold"
+                android:gravity="center"
+                android:text="MP"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:fontFamily="@font/titillium_web_semibold"
+                android:gravity="center"
+                android:text="W"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:fontFamily="@font/titillium_web_semibold"
+                android:gravity="center"
+                android:text="D"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:fontFamily="@font/titillium_web_semibold"
+                android:gravity="center"
+                android:text="L"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:fontFamily="@font/titillium_web_semibold"
+                android:gravity="center"
+                android:text="GF"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:fontFamily="@font/titillium_web_semibold"
+                android:gravity="center"
+                android:text="GA"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:fontFamily="@font/titillium_web_semibold"
+                android:gravity="center"
+                android:text="GD"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:fontFamily="@font/titillium_web_semibold"
+                android:gravity="center"
+                android:text="Pts"
+                android:textSize="@dimen/_14sdp" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+</layout>

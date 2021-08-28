@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_top_scorer"
+        android:title="@string/point_table"
+        android:icon="@drawable/ic_top_scorer"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_point_table"
+        android:title="@string/point_table"
+        android:icon="@drawable/ic_point_table"
+        app:showAsAction="always"/>
+</menu>

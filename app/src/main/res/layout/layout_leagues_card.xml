@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="backgroundColor" type="Integer" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/root_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="@dimen/_2sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_caption"
+        app:cardBackgroundColor="@{backgroundColor}">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:scrollbars="none"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <!--<RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:background="@drawable/checkable_white_background"
+                        android:layout_width="@dimen/_48sdp"
+                        android:layout_height="@dimen/_48sdp"
+                        android:button="@null"
+                        android:padding="@dimen/_5sdp"
+                        android:src="@drawable/ic_epl"
+                        />
+
+                    <RadioButton
+                        android:background="@drawable/checkable_white_background"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:padding="@dimen/_5sdp"
+                        />
+
+                    <RadioButton
+                        android:background="@drawable/checkable_white_background"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:padding="@dimen/_5sdp"
+                        />
+
+                </RadioGroup>-->
+
+                <ImageButton
+                    android:id="@+id/btn_epl"
+                    android:padding="@dimen/_5sdp"
+                    app:srcCompat="@drawable/ic_epl"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/white_circle_background"
+                    android:layout_width="@dimen/_48sdp"
+                    android:layout_height="@dimen/_48sdp"/>
+
+                <ImageButton
+                    android:id="@+id/btn_laliga"
+                    android:padding="@dimen/_5sdp"
+                    app:srcCompat="@drawable/ic_laliga"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/white_circle_background"
+                    android:layout_width="@dimen/_48sdp"
+                    android:layout_height="@dimen/_48sdp"/>
+
+                <ImageButton
+                    android:id="@+id/btn_uefa"
+                    android:padding="@dimen/_5sdp"
+                    app:srcCompat="@drawable/ic_uefa"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/white_circle_background"
+                    android:layout_width="@dimen/_48sdp"
+                    android:layout_height="@dimen/_48sdp"/>
+
+                <ImageButton
+                    android:id="@+id/btn_seriea"
+                    android:padding="@dimen/_5sdp"
+                    app:srcCompat="@drawable/ic_serie"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/white_circle_background"
+                    android:layout_width="@dimen/_48sdp"
+                    android:layout_height="@dimen/_48sdp"/>
+
+                <ImageButton
+                    android:id="@+id/btn_bundesliga"
+                    android:padding="@dimen/_5sdp"
+                    app:srcCompat="@drawable/ic_bundesliga"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/white_circle_background"
+                    android:layout_width="@dimen/_48sdp"
+                    android:layout_height="@dimen/_48sdp"/>
+
+                <ImageButton
+                    android:id="@+id/btn_ligue"
+                    android:padding="@dimen/_5sdp"
+                    app:srcCompat="@drawable/ic_ligue_1_logo"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/white_circle_background"
+                    android:layout_width="@dimen/_48sdp"
+                    android:layout_height="@dimen/_48sdp"/>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </androidx.cardview.widget.CardView>
+</layout>

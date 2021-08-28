@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Goal24 Lite</string>
+    <string name="data_loading">Loading …</string>
+    <string name="point_table">Point Table</string>
+    <string name="league_fixtures">Top League Fixtures</string>
+    <string name="upcoming_matches">Upcoming Match</string>
+    <string name="today_matches">Live Match</string>
+    <string name="no_live_match_available">No Live\nMatch Available</string>
+    <string name="no_upcoming_match_available">No Upcoming\nMatch Available</string>
+    <string name="offline_status">You are now in offline mode</string>
+    <string name="search">Search</string>
+    <string name="btn_reminder_title">Set Reminder</string>
+
+    <string name="match_results">Match Results</string>
+    <string name="top_scorer">Top Scorers</string>
+    <string name="teams">Teams</string>
+
+    <string name="description">
+        Arsenal was founded in 1886 in Woolwich and in 1893 became the first club from the south of
+        England to join the Football League. In 1913, they moved north across the city to Arsenal
+        Stadium in Highbury. In the 1930s, they won five League Championship titles and two FA Cups.
+        After a lean period in the post-war years they won the League and FA Cup Double, in the
+        1970–71 season, and in the 1990s and first decade of the 21st century, won two more Doubles
+        and reached the 2006 UEFA Champions League Final. Since neighbouring Tottenham Hotspur,
+        the two clubs have had a fierce rivalry, the North London derby.
+    </string>
+
+    <string name="head_to_head">Head to Head</string>
+
+    <string name="english_premier_league">English Premier League</string>
+    <string name="spanish_primera_division">Spanish Primera Division</string>
+    <string name="champions_league">UEFA Champions League</string>
+    <string name="italian_serie">Italian Serie A</string>
+    <string name="bundesliga">Bundesliga</string>
+    <string name="ligue">Ligue 1</string>
+
+</resources>

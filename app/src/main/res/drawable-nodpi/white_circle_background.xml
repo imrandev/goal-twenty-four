@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?attr/colorControlHighlight">
+
+    <item android:state_pressed="true">
+        <shape android:shape="oval">
+            <solid android:color="?attr/colorControlHighlight"/>
+            <size android:height="@dimen/_48sdp" android:width="@dimen/_48sdp"/>
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@android:color/white"/>
+            <size android:height="@dimen/_48sdp" android:width="@dimen/_48sdp"/>
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        app:cardUseCompatPadding="true"
+        android:animateLayoutChanges="true"
+        app:cardCornerRadius="@dimen/_15sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/view_center"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/item_match_status"/>
+
+            <TextView
+                android:id="@+id/item_match_home_team"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="#0BBB72"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins"
+                android:gravity="center"
+                android:lines="2"
+                android:text="Real Madrid"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintBottom_toTopOf="@+id/view_center"
+                app:layout_constraintEnd_toStartOf="@+id/view_center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_match_home_score"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="#FDA901"
+                android:fontFamily="@font/titillium_web_bold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_40sdp"
+                app:layout_constraintBottom_toTopOf="@+id/item_match_status"
+                app:layout_constraintEnd_toStartOf="@id/view_center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_center" />
+
+            <TextView
+                android:id="@+id/item_match_away_score"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="#FDA901"
+                android:fontFamily="@font/titillium_web_bold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_40sdp"
+                app:layout_constraintBottom_toTopOf="@+id/item_match_status"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/view_center"
+                app:layout_constraintTop_toBottomOf="@+id/view_center" />
+
+            <TextView
+                android:id="@+id/item_match_away_team"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="#0BBB72"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins"
+                android:gravity="center"
+                android:lines="2"
+                android:padding="@dimen/_5sdp"
+                android:text="Barcelona"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintBottom_toTopOf="@+id/view_center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view_center"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_match_day"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@android:color/darker_gray"
+                android:text="Match Day"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:fontFamily="@font/raleway"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/item_match_status"
+                app:layout_constraintBottom_toBottomOf="@+id/item_match_status"
+                app:layout_constraintTop_toTopOf="@+id/item_match_status"/>
+
+            <TextView
+                android:id="@+id/item_match_status"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@android:color/white"
+                android:text="Live"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:gravity="center"
+                android:fontFamily="@font/titillium_web"
+                android:background="@drawable/blue_rounded_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/item_league_name"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/titillium_web_semibold"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="La Liga"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/item_match_status"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/item_match_status"
+                app:layout_constraintTop_toTopOf="@+id/item_match_status" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
