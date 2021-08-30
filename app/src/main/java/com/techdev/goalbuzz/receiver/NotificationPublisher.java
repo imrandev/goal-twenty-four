@@ -18,6 +18,8 @@ import com.techdev.goalbuzz.room.database.RoomManager;
 import com.techdev.goalbuzz.room.model.Result;
 import com.techdev.goalbuzz.ui.main.MainActivity;
 import com.techdev.goalbuzz.util.Constant;
+import com.techdev.goalbuzz.util.DateFormatter;
+import com.techdev.goalbuzz.util.MatchUtil;
 
 import java.util.Random;
 
@@ -35,13 +37,15 @@ public class NotificationPublisher extends BroadcastReceiver {
             PendingIntent pendingIntent
                     = PendingIntent.getActivity(context, new Random().nextInt(10000), notificationIntent, PendingIntent.FLAG_ONE_SHOT);
 
+            String playTime = MatchUtil.getInstance().getPlayTime(match);
+
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, Constant.CHANNEL_ID)
-                    .setContentTitle(String.format("Upcoming %s", match.getCompetition().getName()))
+                    .setContentTitle(String.format("%s - Matchday %s", match.getCompetition().getName(), match.getMatchday()))
                     .setContentText("Don't forget to watch")
                     .setSmallIcon(R.mipmap.ic_launcher_round)
                     .setContentIntent(pendingIntent)
                     .setStyle(new NotificationCompat.BigTextStyle()
-                            .bigText(String.format("Matchday %s : %s Vs %s", match.getMatchday(), match.getHomeTeam().getName(), match.getAwayTeam().getName())));
+                            .bigText(String.format("%s Vs %s, starts in %s", match.getHomeTeam().getName(), match.getAwayTeam().getName(), playTime)));
 
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context. NOTIFICATION_SERVICE ) ;
             Notification notification = builder.build();
@@ -52,10 +56,7 @@ public class NotificationPublisher extends BroadcastReceiver {
                         new NotificationChannel(Constant.CHANNEL_ID , "NOTIFICATION_CHANNEL_NAME" , importance) ;
                 notificationManager.createNotificationChannel(notificationChannel);
             }
-
-            int id = intent.getIntExtra( Constant.NOTIFICATION_ID , 0 );
-            notificationManager.notify(new Random().nextInt(10000) , notification);
-
+            notificationManager.notify(match.getId() , notification);
             AppExecutors.getInstance().diskIO().execute(() -> {
                 Result result = RoomManager.getInstance(context).resultDao().findById(match.getId());
                 if (result != null){

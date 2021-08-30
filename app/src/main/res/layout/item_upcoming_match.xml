@@ -60,7 +60,7 @@
                 android:id="@+id/item_match_away_team"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#E0C200"
+                android:background="@color/colorAccentCard"
                 android:ellipsize="end"
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
@@ -125,7 +125,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/item_match_away_team"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <Button
+            <CheckBox
                 android:id="@+id/btn_notification"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_30sdp"
@@ -136,7 +136,8 @@
                 android:paddingEnd="@dimen/_10sdp"
                 android:textColor="@android:color/white"
                 android:drawablePadding="@dimen/_3sdp"
-                android:text="Notify Me"
+                android:button="@null"
+                android:text="@string/notify"
                 android:fontFamily="@font/titillium_web_semibold"
                 android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#FAFAFA</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="colorStandingCard">#E0C200</color>
+    <color name="colorAccentCard">#D8BB00</color>
     <color name="colorTopCard">#0498DA</color>
 </resources>

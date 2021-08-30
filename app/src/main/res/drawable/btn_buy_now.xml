@@ -4,7 +4,7 @@
         <layer-list>
             <item>
                 <shape>
-                    <solid android:color="#E0C200"/>
+                    <solid android:color="@color/colorAccentCard"/>
                 </shape>
             </item>
             <item
@@ -22,7 +22,7 @@
         <layer-list>
             <item>
                 <shape>
-                    <solid android:color="#CDB411"/>
+                    <solid android:color="#D8BB00"/>
                 </shape>
             </item>
             <item

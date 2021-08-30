@@ -20,7 +20,7 @@
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_14sdp"
-                android:background="#E0C200"
+                android:background="@color/colorAccentCard"
                 android:textColor="@android:color/white"
                 android:padding="@dimen/_5sdp"
                 android:fontFamily="@font/raleway"

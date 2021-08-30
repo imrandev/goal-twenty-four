@@ -48,7 +48,7 @@
             android:background="@drawable/top_bar_view"
             android:fontFamily="@font/titillium_web_semibold"
             android:padding="@dimen/_5sdp"
-            android:text="@string/today_matches"
+            android:text="@string/live_matches"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12sdp"
             android:textStyle="bold"

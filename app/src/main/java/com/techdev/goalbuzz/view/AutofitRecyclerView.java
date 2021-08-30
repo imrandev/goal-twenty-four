@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.animation.GridLayoutAnimationController;
 
 public class AutofitRecyclerView extends RecyclerView {
+
     private GridLayoutManager manager;
     private int columnWidth = -1;
 
@@ -31,9 +32,7 @@ public class AutofitRecyclerView extends RecyclerView {
 
     private void init(Context context, AttributeSet attrs) {
         if (attrs != null) {
-            int[] attrsArray = {
-                    android.R.attr.columnWidth
-            };
+            int[] attrsArray = {android.R.attr.columnWidth};
             TypedArray array = context.obtainStyledAttributes(attrs, attrsArray);
             columnWidth = array.getDimensionPixelSize(0, -1);
             array.recycle();
@@ -110,7 +109,6 @@ public class AutofitRecyclerView extends RecyclerView {
             case MotionEvent.ACTION_DOWN:
                 getParent().requestDisallowInterceptTouchEvent(false);
                 break;
-
             case MotionEvent.ACTION_UP:
                 getParent().requestDisallowInterceptTouchEvent(true);
                 break;

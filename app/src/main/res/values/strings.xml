@@ -4,7 +4,7 @@
     <string name="point_table">Point Table</string>
     <string name="league_fixtures">Top League Fixtures</string>
     <string name="upcoming_matches">Upcoming Match</string>
-    <string name="today_matches">Live Match</string>
+    <string name="live_matches">Live Match</string>
     <string name="no_live_match_available">No Live\nMatch Available</string>
     <string name="no_upcoming_match_available">No Upcoming\nMatch Available</string>
     <string name="offline_status">You are now in offline mode</string>
@@ -33,5 +33,8 @@
     <string name="italian_serie">Italian Serie A</string>
     <string name="bundesliga">Bundesliga</string>
     <string name="ligue">Ligue 1</string>
+    <string name="active_schedule">Active</string>
+    <string name="notify">Schedule</string>
+    <string name="cancel_notify">Cancel</string>
 
 </resources>

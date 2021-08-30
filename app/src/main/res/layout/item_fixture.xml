@@ -60,7 +60,7 @@
                 android:id="@+id/item_match_away_team"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="#E0C200"
+                android:background="@color/colorAccentCard"
                 android:ellipsize="end"
                 android:fontFamily="@font/poppins"
                 android:gravity="center"

@@ -1,8 +1,11 @@
 package com.techdev.goalbuzz.viewholder;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.databinding.ViewDataBinding;
 
+import com.techdev.goalbuzz.R;
 import com.techdev.goalbuzz.adapter.BaseRecyclerClickListener;
 import com.techdev.goalbuzz.adapter.BaseRecyclerViewHolder;
 import com.techdev.goalbuzz.databinding.ItemEmptyViewBinding;
@@ -26,7 +29,7 @@ public class UpcomingViewHolder extends BaseRecyclerViewHolder<Match, BaseRecycl
 
     @Override
     public void onBindView(Match match) {
-        viewPopulateWithData(match);
+        viewPopulateWithData(match, itemView.getContext());
     }
 
     @Override
@@ -36,7 +39,7 @@ public class UpcomingViewHolder extends BaseRecyclerViewHolder<Match, BaseRecycl
 
     @Override
     public void onBindView(Match match, BaseRecyclerClickListener<Match> onItemClickedListener) {
-        viewPopulateWithData(match);
+        viewPopulateWithData(match, itemView.getContext());
         enableItemViewLongClick(match, onItemClickedListener);
         enableCustomViewItemClick(upcomingMatchBinding.btnNotification, match, onItemClickedListener);
     }
@@ -46,9 +49,9 @@ public class UpcomingViewHolder extends BaseRecyclerViewHolder<Match, BaseRecycl
 
     }
 
-    private void viewPopulateWithData(Match match) {
-        upcomingMatchBinding.btnNotification.setEnabled(!match.hasScheduled());
-        upcomingMatchBinding.btnNotification.setText(match.hasScheduled() ? "Active" : "Notify Me");
+    private void viewPopulateWithData(Match match, Context context) {
+        upcomingMatchBinding.btnNotification.setChecked(match.hasScheduled());
+        upcomingMatchBinding.btnNotification.setText(match.hasScheduled() ? context.getString(R.string.cancel_notify) : context.getString(R.string.notify));
         upcomingMatchBinding.itemMatchDay.setText(String.format("Matchday %s", match.getMatchday()));
         upcomingMatchBinding.itemLeagueName.setText(String.format("%s", match.getCompetition().getName()));
         upcomingMatchBinding.itemMatchHomeTeam.setText(match.getHomeTeam().getName());
