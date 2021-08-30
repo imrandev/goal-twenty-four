@@ -134,7 +134,7 @@ public class AccessoryActivity extends BaseActivity<AccessoryContract.Presenter>
 
     private final BaseRecyclerClickListener<Product> buyNowClickListener = new BaseRecyclerClickListener<Product>() {
         @Override
-        public void onItemClickListener(Product product, int position) {
+        public void onItemClickListener(View view, Product product, int position) {
             CustomTabsIntent customTabsIntent = new CustomTabsIntent.Builder().build();
             CustomTabActivityHelper.openCustomTab(
                     AccessoryActivity.this, customTabsIntent, Uri.parse(product.getLinkUrl()), new WebViewFallback());

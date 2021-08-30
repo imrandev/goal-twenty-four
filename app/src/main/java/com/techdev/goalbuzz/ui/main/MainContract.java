@@ -1,5 +1,7 @@
 package com.techdev.goalbuzz.ui.main;
 
+import android.widget.CheckBox;
+
 import com.techdev.goalbuzz.model.League;
 import com.techdev.goalbuzz.model.Query;
 import com.techdev.goalbuzz.model.live.Match;
@@ -16,12 +18,15 @@ public class MainContract {
         void onFinishedView(List<Match> matchList, String message, int count);
         void onTeamView(List<Query> teamList, String message, int count);
         void onLeagueView(List<League> leagueList);
+        void onChangeMarquee(String text);
+        void updateCheckBox(CheckBox checkBox, boolean scheduled);
     }
 
     public interface Presenter extends IBasePresenter<View> {
         void onMatchApiTask();
         void onLoadLeague();
-        void setReminder(Match match);
+        void scheduleMatch(Match match, CheckBox checkBox);
+        void cancelSchedule(int eventId, CheckBox checkBox);
         void sendCrashReport(String errorMessage);
         boolean hasScheduled(Match match);
     }

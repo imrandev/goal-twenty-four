@@ -35,7 +35,7 @@ public abstract class BaseRecyclerViewHolder<T, L> extends RecyclerView.ViewHold
                 }
                 mLastClickTime = now;
                 if (baseRecyclerClickListener != null){
-                    baseRecyclerClickListener.onItemClickListener(item, getAdapterPosition());
+                    baseRecyclerClickListener.onItemClickListener(itemView, item, getBindingAdapterPosition());
                 }
             }
         });
@@ -51,7 +51,7 @@ public abstract class BaseRecyclerViewHolder<T, L> extends RecyclerView.ViewHold
                 }
                 mLastClickTime = now;
                 if (baseRecyclerClickListener != null){
-                    baseRecyclerClickListener.onItemClickListener(item, getAdapterPosition());
+                    baseRecyclerClickListener.onItemClickListener(itemView, item, getAdapterPosition());
                 }
             }
         });
@@ -67,7 +67,7 @@ public abstract class BaseRecyclerViewHolder<T, L> extends RecyclerView.ViewHold
                         return;
                     }
                     mLastClickTime = now;
-                    baseRecyclerClickListener.onItemClickListener(item, getAdapterPosition());
+                    baseRecyclerClickListener.onItemClickListener(itemView, item, getAdapterPosition());
                 }
             }
         });

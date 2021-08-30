@@ -251,7 +251,7 @@ public class FixtureActivity extends BaseActivity<FixtureContract.Presenter> imp
     }
 
     @Override
-    public void onItemClickListener(Match item, int position) {
+    public void onItemClickListener(View view, Match item, int position) {
 
     }
 

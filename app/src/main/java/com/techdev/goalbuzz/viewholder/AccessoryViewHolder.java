@@ -47,8 +47,8 @@ public class AccessoryViewHolder extends BaseRecyclerViewHolder<Product, BaseRec
                 .apply(new RequestOptions().override(
                         accessoryBinding.itemProductImage.getMeasuredWidth(),
                         accessoryBinding.itemProductImage.getMeasuredHeight()))
-                .error(R.drawable.ic_product)
-                .placeholder(R.drawable.ic_product)
+                .error(R.drawable.baseline_shopping_bag_red_900_48dp)
+                .placeholder(R.drawable.baseline_shopping_bag_red_900_48dp)
                 .into(accessoryBinding.itemProductImage);
         accessoryBinding.itemTvProductName.setText(product.getName());
         enableCustomViewItemClick(accessoryBinding.btnBuyNow, product, onItemClickedListener);

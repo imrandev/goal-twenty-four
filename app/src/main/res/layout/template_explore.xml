@@ -8,8 +8,8 @@
         android:layout_weight="1">
 
         <ImageView
-            android:id="@+id/iv_accessory"
-            android:src="@drawable/baseline_shopping_bag_dark_blue_36dp"
+            android:id="@+id/iv_explore"
+            android:src="@drawable/baseline_explore_dark_blue_36dp"
             android:layout_width="match_parent"
             android:paddingTop="@dimen/_8sdp"
             android:paddingStart="@dimen/_8sdp"
@@ -22,18 +22,18 @@
             android:layout_height="@dimen/_50sdp"/>
 
         <Button
-            android:id="@+id/btn_accessory"
+            android:id="@+id/btn_explore"
             android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:text="BUY ACCESSORY"
+            android:text="Explore More"
             android:textSize="@dimen/_8sdp"
             android:fontFamily="@font/poppins"
             android:textColor="@android:color/white"
             android:background="@drawable/template_green_button_background"
-            app:layout_constraintTop_toTopOf="@+id/iv_accessory"
-            app:layout_constraintEnd_toEndOf="@id/iv_accessory"
-            app:layout_constraintBottom_toBottomOf="@id/iv_accessory"
+            app:layout_constraintTop_toTopOf="@+id/iv_explore"
+            app:layout_constraintEnd_toEndOf="@id/iv_explore"
+            app:layout_constraintBottom_toBottomOf="@id/iv_explore"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

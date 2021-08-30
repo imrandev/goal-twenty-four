@@ -7,6 +7,7 @@ import com.techdev.goalbuzz.model.market.Amazon;
 import com.techdev.goalbuzz.model.point.PointTable;
 import com.techdev.goalbuzz.model.team.TeamInfo;
 import com.techdev.goalbuzz.model.top.TopScorer;
+import com.techdev.goalbuzz.model.videos.Highlights;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -35,4 +36,7 @@ public interface ApiRepository {
 
     @GET("/api/amazon.json")
     Call<Amazon> findAmazonProducts();
+
+    @GET("/video-api/v3/")
+    Call<Highlights> findVideos();
 }

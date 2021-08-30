@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -43,15 +44,11 @@ import com.techdev.goalbuzz.viewholder.UpcomingViewHolder;
 import java.util.Collections;
 import java.util.List;
 
-import static com.techdev.goalbuzz.util.Constant.APP_UPDATE_REQUEST_CODE;
-import static com.techdev.goalbuzz.util.Constant.LEAGUE_NAME;
-
 public class MainActivity extends BaseActivity<MainContract.Presenter> implements MainContract.View {
 
     private MainContract.Presenter mMainPresenter;
     private ActivityMainBinding mainBinding;
     private Snackbar snackbar;
-    /*private final AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(this);*/
     private static final String TAG = "MainActivity";
 
     @Override
@@ -88,24 +85,20 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         mMainPresenter = presenter;
         mMainPresenter.onAttach(this);
 
-        // check if the app has any update version to install
-        //checkAppUpdate();
-
         mMainPresenter.onLoadLeague();
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Today's Match");
         setSupportActionBar(toolbar);
         snackbar = getSnack();
         mainBinding.nestedScrollview.setSmoothScrollingEnabled(true);
-        mainBinding.rvUpcomingList.setLayoutManager(new SmoothLinearLayoutManager(
-                getApplicationContext(), RecyclerView.HORIZONTAL, false){
+
+        mainBinding.rvUpcomingList.setLayoutManager(new SmoothLinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL, false){
             @Override
             public boolean canScrollVertically() {
                 return false;
             }
         });
-        mainBinding.rvLiveList.setLayoutManager(new SmoothLinearLayoutManager(
-                getApplicationContext(), RecyclerView.HORIZONTAL, false){
+        mainBinding.rvLiveList.setLayoutManager(new SmoothLinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL, false){
             @Override
             public boolean canScrollVertically() {
                 return false;
@@ -117,16 +110,14 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
                 return false;
             }
         });
+
         mainBinding.rvResultList.setNestedScrollingEnabled(false);
-        mainBinding.btnReview.setOnClickListener(btnReviewClickListener);
-        mainBinding.btnAccessory.setOnClickListener(btnAccessoryClickListener);
-        mainBinding.btnExplore.setOnClickListener(btnExploreClickListener);
-        /*mainBinding.btnEuroStandings.setOnClickListener(btnEuroStandingsClickListener);*/
+        mainBinding.templateReviewBanner.btnReview.setOnClickListener(btnReviewClickListener);
+        mainBinding.topMenu.templateAccessories.btnAccessory.setOnClickListener(btnAccessoryClickListener);
+        mainBinding.topMenu.templateExplore.btnExplore.setOnClickListener(btnExploreClickListener);
     }
 
     private final View.OnClickListener btnReviewClickListener = v -> playStore();
-    /*private final View.OnClickListener btnEuroClickListener = v -> navToFixturesWthExtras("2018");
-    private final View.OnClickListener btnEuroStandingsClickListener = v -> navToStandingWithExtras("EC", "European Championship");*/
     private final View.OnClickListener btnAccessoryClickListener = v -> navToAccessory();
     private final View.OnClickListener btnExploreClickListener = v -> navToExplore();
 
@@ -139,15 +130,11 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
         // To count with Play market backstack, After pressing back button,
         // to taken back to our application, we need to add following flags to intent.
-        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
-                Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
-                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         try {
             startActivity(goToMarket);
         } catch (ActivityNotFoundException e) {
-            startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("http://play.google.com/store/apps/details?id="
-                            + getApplicationContext().getPackageName())));
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName())));
         }
     }
 
@@ -176,26 +163,20 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_point_table: {
-                startActivity(new Intent(getApplicationContext(), StandingActivity.class));
-                break;
-            }
-            case R.id.action_top_scorer: {
-                startActivity(new Intent(getApplicationContext(), TopActivity.class));
-                break;
-            }
+        int itemId = item.getItemId();
+        if (itemId == R.id.action_point_table) {
+            startActivity(new Intent(getApplicationContext(), StandingActivity.class));
+        } else if (itemId == R.id.action_top_scorer) {
+            startActivity(new Intent(getApplicationContext(), TopActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void showUpcomingList(List<Match> matchList, String message){
-        RecyclerViewAdapter<Match, BaseRecyclerClickListener<Match>> mLiveMatchAdapter
-                = new RecyclerViewAdapter<Match, BaseRecyclerClickListener<Match>>(matchList, upcomingMatchClickListener, getString(R.string.no_upcoming_match_available)) {
+        RecyclerViewAdapter<Match, BaseRecyclerClickListener<Match>> mUpcomingMatchAdapter = new RecyclerViewAdapter<Match, BaseRecyclerClickListener<Match>>(matchList, upcomingMatchClickListener, getString(R.string.no_upcoming_match_available)) {
             @Override
             public BaseRecyclerViewHolder<Match, BaseRecyclerClickListener<Match>> getViewHolder(ViewGroup parent) {
-                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.item_upcoming_match, parent, false);
+                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_upcoming_match, parent, false);
                 return new UpcomingViewHolder(dataBinding, false);
             }
 
@@ -206,21 +187,19 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
             @Override
             public BaseRecyclerViewHolder<Match, BaseRecyclerClickListener<Match>> getEmptyViewHolder(ViewGroup parent) {
-                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.item_empty_view, parent, false);
+                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_empty_view, parent, false);
                 return new UpcomingViewHolder(dataBinding, true);
             }
         };
-        mainBinding.rvUpcomingList.setAdapter(mLiveMatchAdapter);
+        mainBinding.rvUpcomingList.setVisibility(matchList.size() > 0 ? View.VISIBLE : View.GONE);
+        mainBinding.rvUpcomingList.setAdapter(mUpcomingMatchAdapter);
     }
 
     private void showLiveList(List<Match> matchList, String message){
-        RecyclerViewAdapter<Match, BaseRecyclerClickListener<Match>> mLiveMatchAdapter
-                = new RecyclerViewAdapter<Match, BaseRecyclerClickListener<Match>>(matchList, getString(R.string.no_live_match_available)) {
+        RecyclerViewAdapter<Match, BaseRecyclerClickListener<Match>> mLiveMatchAdapter = new RecyclerViewAdapter<Match, BaseRecyclerClickListener<Match>>(matchList, getString(R.string.no_live_match_available)) {
             @Override
             public BaseRecyclerViewHolder<Match, BaseRecyclerClickListener<Match>> getViewHolder(ViewGroup parent) {
-                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.item_live_match, parent, false);
+                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_live_match, parent, false);
                 return new LiveViewHolder(dataBinding);
             }
 
@@ -231,21 +210,19 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
             @Override
             public BaseRecyclerViewHolder<Match, BaseRecyclerClickListener<Match>> getEmptyViewHolder(ViewGroup parent) {
-                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.item_empty_view, parent, false);
+                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_empty_view, parent, false);
                 return new LiveViewHolder(dataBinding);
             }
         };
+        mainBinding.rvLiveList.setVisibility(matchList.size() > 0 ? View.VISIBLE : View.GONE);
         mainBinding.rvLiveList.setAdapter(mLiveMatchAdapter);
     }
 
     private void showResultsList(List<Match> matchList, String message){
-        RecyclerViewAdapter<Match, BaseRecyclerClickListener<Match>> mResultsMatchAdapter
-                = new RecyclerViewAdapter<Match, BaseRecyclerClickListener<Match>>(matchList, "No Match Result Available!") {
+        RecyclerViewAdapter<Match, BaseRecyclerClickListener<Match>> mResultsMatchAdapter = new RecyclerViewAdapter<Match, BaseRecyclerClickListener<Match>>(matchList, "No Match Result Available!") {
             @Override
             public BaseRecyclerViewHolder<Match, BaseRecyclerClickListener<Match>> getViewHolder(ViewGroup parent) {
-                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.item_live_match, parent, false);
+                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_live_match, parent, false);
                 return new LiveViewHolder(dataBinding);
             }
 
@@ -256,11 +233,11 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
             @Override
             public BaseRecyclerViewHolder<Match, BaseRecyclerClickListener<Match>> getEmptyViewHolder(ViewGroup parent) {
-                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.item_empty_view, parent, false);
+                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_empty_view, parent, false);
                 return new LiveViewHolder(dataBinding);
             }
         };
+        mainBinding.rvResultList.setVisibility(matchList.size() > 0 ? View.VISIBLE : View.GONE);
         mainBinding.rvResultList.setAdapter(mResultsMatchAdapter);
     }
 
@@ -272,20 +249,12 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         startActivity(new Intent(getApplicationContext(), AccessoryActivity.class));
     }
 
-    /*private void navToStandingWithExtras(String extras, String name){
-        startActivity(new Intent(getApplicationContext(), StandingActivity.class)
-                .putExtra(Constant.LEAGUE_ID, extras)
-                .putExtra(Constant.LEAGUE_NAME, name)
-        );
-    }*/
-
     @Override
     protected void onDestroy() {
         mainBinding.adView.destroy();
         mainBinding.adViewTop.destroy();
         clearMemory();
         mainBinding = null;
-        /*appUpdateManager.unregisterListener(installStateUpdatedListener);*/
         super.onDestroy();
     }
 
@@ -293,7 +262,8 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     public void onLiveView(List<Match> matchList, String message, int count) {
         Collections.shuffle(matchList);
         runOnUiThread(() -> {
-            mainBinding.tvPlayingCaption.setText(String.format("Live Match (%s)", count));
+            mainBinding.tvLiveCaption.setVisibility(View.VISIBLE);
+            mainBinding.tvLiveCaption.setText(String.format("Live Match (%s)", count));
             showLiveList(matchList, message);
         });
     }
@@ -311,6 +281,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     public void onFinishedView(List<Match> matchList, String message, int count) {
         Collections.shuffle(matchList);
         runOnUiThread(() -> {
+            mainBinding.tvResultCaption.setVisibility(View.VISIBLE);
             mainBinding.tvResultCaption.setText(String.format("Match Result (%s)", count));
             showResultsList(matchList, message);
         });
@@ -318,7 +289,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
     @Override
     public void onTeamView(List<Query> teamList, String message, int count) {
-        /*showTeamList(teamList, count);*/
+
     }
 
     @Override
@@ -326,8 +297,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         RecyclerViewAdapter<League, BaseRecyclerClickListener<League>> leagueRecyclerViewAdapter = new RecyclerViewAdapter<League, BaseRecyclerClickListener<League>>(leagueList, leagueRecyclerClickListener) {
             @Override
             public BaseRecyclerViewHolder<League, BaseRecyclerClickListener<League>> getViewHolder(ViewGroup parent) {
-                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.item_league, parent, false);
+                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_league, parent, false);
                 return new LeagueViewHolder(dataBinding, getApplicationContext());
             }
 
@@ -338,61 +308,23 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
             @Override
             public BaseRecyclerViewHolder<League, BaseRecyclerClickListener<League>> getEmptyViewHolder(ViewGroup parent) {
-                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.item_empty_view, parent, false);
+                ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_empty_view, parent, false);
                 return new LeagueViewHolder(dataBinding, getApplicationContext());
             }
         };
         mainBinding.rvLeagueView.setAdapter(leagueRecyclerViewAdapter);
     }
 
-
-    /*public void onRequestAppUpdate(AppUpdateManager appUpdateManager, AppUpdateInfo appUpdateInfo) {
-        try {
-            appUpdateManager.startUpdateFlowForResult(
-                    // Pass the intent that is returned by 'getAppUpdateInfo()'.
-                    appUpdateInfo,
-                    // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
-                    AppUpdateType.FLEXIBLE,
-                    // The current activity making the update request.
-                    this,
-                    // Include a request code to later monitor this update request.
-                    APP_UPDATE_REQUEST_CODE);
-        } catch (IntentSender.SendIntentException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    /*private void showTeamList(List<Query> teamList, int count) {
-        Collections.shuffle(teamList);
+    @Override
+    public void onChangeMarquee(String text) {
         runOnUiThread(() -> {
-            mainBinding.tvTeamCaption.setText(String.format("Today's Teams (%s)", count));
-            RecyclerViewAdapter<Query, BaseRecyclerClickListener<Query>> mTeamAdapter
-                    = new RecyclerViewAdapter<Query, BaseRecyclerClickListener<Query>>(teamList,  "No Team Found!") {
-                @Override
-                public BaseRecyclerViewHolder<Query, BaseRecyclerClickListener<Query>> getViewHolder(ViewGroup parent) {
-                    ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                            R.layout.item_team, parent, false);
-                    return new NameViewHolder(dataBinding, getApplicationContext());
-                }
-
-                @Override
-                public BaseRecyclerViewHolder<Query, BaseRecyclerClickListener<Query>> getSingleHeaderViewHolder(ViewGroup parent) {
-                    return null;
-                }
-
-                @Override
-                public BaseRecyclerViewHolder<Query, BaseRecyclerClickListener<Query>> getEmptyViewHolder(ViewGroup parent) {
-                    ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                            R.layout.item_empty_view, parent, false);
-                    return new NameViewHolder(dataBinding, getApplicationContext());
-                }
-            };
-            mainBinding.rvTeamList.setAdapter(mTeamAdapter);
+            mainBinding.tvMarquee.setVisibility(View.VISIBLE);
+            mainBinding.tvMarquee.setSelected(true);
+            mainBinding.tvMarquee.setText(text);
         });
-    }*/
+    }
 
-    private final BaseRecyclerClickListener<League> leagueRecyclerClickListener = (item, position) -> {
+    private final BaseRecyclerClickListener<League> leagueRecyclerClickListener = (view, item, position) -> {
         navToFixturesWthExtras(resourceUtils.getLeagueIds()[position]);
     };
 
@@ -400,7 +332,6 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         @Override
         public void onAdLoaded() {
             super.onAdLoaded();
-            mainBinding.tvAdView.setVisibility(View.VISIBLE);
             mainBinding.tvAdViewTop.setVisibility(View.VISIBLE);
             mainBinding.adView.setVisibility(View.VISIBLE);
             mainBinding.adViewTop.setVisibility(View.VISIBLE);
@@ -409,7 +340,6 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         @Override
         public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
             super.onAdFailedToLoad(loadAdError);
-            mainBinding.tvAdView.setVisibility(View.GONE);
             mainBinding.tvAdViewTop.setVisibility(View.GONE);
             mainBinding.adView.setVisibility(View.GONE);
             mainBinding.adViewTop.setVisibility(View.GONE);
@@ -432,30 +362,6 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
             mainBinding.adView.resume();
             mainBinding.adViewTop.resume();
         }
-        /*addAppUpdateSuccessListener();*/
-    }
-
-    private void addAppUpdateSuccessListener() {
-        /*appUpdateManager.getAppUpdateInfo().addOnSuccessListener(appUpdateInfo -> {
-            try {
-                // If the update is downloaded but not installed,
-                // notify the user to complete the update.
-                if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
-                    popupSnackbarForCompleteUpdate();
-                }
-
-                //Check if Immediate update is required
-                if (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-                    // If an in-app update is already running, resume the update.
-                    appUpdateManager.startUpdateFlowForResult(
-                            appUpdateInfo, AppUpdateType.IMMEDIATE, MainActivity.this,
-                            APP_UPDATE_REQUEST_CODE);
-                }
-            } catch (Exception e){
-                e.printStackTrace();
-                Log.d(TAG, "onFailure: " + e.getMessage());
-            }
-        }).addOnFailureListener(e -> Log.d(TAG, "onFailure: " + e.getMessage()));*/
     }
 
     private void clearMemory() {
@@ -468,66 +374,15 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
     private final BaseRecyclerClickListener<Match> upcomingMatchClickListener = new BaseRecyclerClickListener<Match>() {
         @Override
-        public void onItemClickListener(Match item, int position) {
-            mMainPresenter.setReminder(item);
+        public void onItemClickListener(View view, Match item, int position) {
+            CheckBox checkBox = view.findViewById(R.id.btn_notification);
+            mMainPresenter.scheduleMatch(item, checkBox);
         }
     };
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == APP_UPDATE_REQUEST_CODE) {
-            if (resultCode != RESULT_OK) {
-                // If the update is cancelled or fails,
-                // you can request to start the update again.
-                toast("App Update failed, please try again on the next app launch.");
-            }
-        }
+    public void updateCheckBox(CheckBox checkBox, boolean scheduled) {
+        checkBox.setChecked(scheduled);
+        checkBox.setText(scheduled ? R.string.cancel_notify : R.string.notify);
     }
-
-    public void checkAppUpdate() {
-        /*// Returns an intent object that you use to check for an update.
-        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-
-        // Checks that the platform will allow the specified type of update.
-        appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
-
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
-                int installType = AppUpdateType.FLEXIBLE;
-                if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-                    installType = AppUpdateType.IMMEDIATE;
-                }
-                if (installType == AppUpdateType.FLEXIBLE){
-                    // Before starting an update, register a listener for updates.
-                    appUpdateManager.registerListener(installStateUpdatedListener);
-                }
-                // Request the update.
-                onRequestAppUpdate(appUpdateManager, appUpdateInfo);
-            }
-        });*/
-    }
-
-    // Create a listener to track request state updates.
-    /*InstallStateUpdatedListener installStateUpdatedListener = state -> {
-        if (state.installStatus() == InstallStatus.DOWNLOADED) {
-            popupSnackbarForCompleteUpdate();
-        } else if (state.installStatus() == InstallStatus.INSTALLED){
-            // When status updates are no longer needed, unregister the listener.
-            appUpdateManager.unregisterListener((InstallStateUpdatedListener) this);
-        }
-        // Log state or install the update.
-    };*/
-
-    /* Displays the snackbar notification and call to action. */
-    /*private void popupSnackbarForCompleteUpdate() {
-        Snackbar snackbar =
-                Snackbar.make(
-                        findViewById(R.id.rootView),
-                        "An update has just been downloaded.",
-                        Snackbar.LENGTH_INDEFINITE);
-        snackbar.setAction("RESTART", view -> appUpdateManager.completeUpdate());
-        snackbar.setActionTextColor(
-                getResources().getColor(android.R.color.holo_orange_dark));
-        snackbar.show();
-    }*/
 }

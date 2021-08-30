@@ -3,6 +3,7 @@ package com.techdev.goalbuzz.viewholder;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.databinding.ViewDataBinding;
 
 import com.techdev.goalbuzz.R;
@@ -55,7 +56,7 @@ public class LeagueViewHolder extends BaseRecyclerViewHolder<League, BaseRecycle
     }
 
     private void onBackgroundChanged(boolean isOdd){
-        itemLeagueBinding.itemView.setBackground(context.getDrawable(
-                isOdd ? R.drawable.yellow_rounded_background : R.drawable.green_rounded_background));
+        itemLeagueBinding.itemView.setBackground(AppCompatResources.getDrawable(
+                context, isOdd ? R.drawable.yellow_flat_background : R.drawable.green_flat_background));
     }
 }

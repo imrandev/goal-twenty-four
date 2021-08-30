@@ -33,7 +33,7 @@
 
         <include
             android:id="@+id/top_card_view"
-            app:backgroundColor="@{@color/colorStandingCard}"
+            app:backgroundColor="@{@color/colorAccentCard}"
             layout="@layout/layout_leagues_card"
             />
 

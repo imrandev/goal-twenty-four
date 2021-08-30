@@ -23,7 +23,7 @@
                 android:gravity="center"
                 android:padding="@dimen/_5sdp"
                 android:fontFamily="@font/raleway"
-                android:src="@drawable/ic_product"
+                android:src="@drawable/baseline_shopping_bag_red_900_48dp"
                 android:adjustViewBounds="true"
                 app:layout_constraintEnd_toStartOf="@+id/view_center"
                 app:layout_constraintStart_toStartOf="parent"
