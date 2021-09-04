@@ -72,13 +72,22 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
                                 }
                             }
                             if (view != null) {
+                                String marquee = "";
                                 if (mLiveMatches.size() > 0){
-                                    view.onChangeMarquee(generateMarqueeText(mLiveMatches, Constant.LIVE_MATCH));
-                                } else if (mFinishedMatches.size() > 0){
-                                    view.onChangeMarquee(generateMarqueeText(mFinishedMatches, Constant.FINISHED_MATCH));
-                                } else {
-                                    view.onChangeMarquee(generateMarqueeText(mUpcomingMatches, Constant.UPCOMING_MATCH));
+                                    marquee = "▣ Live : " + generateMarqueeText(mLiveMatches, Constant.LIVE_MATCH) + " ";
                                 }
+                                if (mFinishedMatches.size() > 0){
+                                    marquee = marquee + " ▣ Results : " + generateMarqueeText(mFinishedMatches, Constant.FINISHED_MATCH) + " ";
+                                }
+                                if (mUpcomingMatches.size() > 0) {
+                                    marquee = marquee + " ▣ Upcoming : " + generateMarqueeText(mUpcomingMatches, Constant.UPCOMING_MATCH);
+                                }
+
+                                if (!marquee.isEmpty()) {
+                                    String finalMarquee = marquee;
+                                    new Handler().postDelayed(() -> view.onChangeMarquee(finalMarquee), 1000);
+                                }
+
                                 view.onLiveView(mLiveMatches, message, mLiveMatches.size());
                                 view.onUpcomingView(mUpcomingMatches, message, mUpcomingMatches.size());
                                 view.onFinishedView(mFinishedMatches, message, mFinishedMatches.size());
@@ -247,7 +256,6 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
             } else {
                 Score score = match.getScore();
                 if (score != null){
-                    String tag = type.equals(Constant.LIVE_MATCH) ? "▣ Live " : "";
                     int home = score.getPenalties().getHomeTeam() != null ?
                             score.getPenalties().getHomeTeam() : score.getExtraTime().getHomeTeam() != null ?
                             score.getExtraTime().getHomeTeam() : score.getFullTime().getHomeTeam() != null ?
@@ -258,7 +266,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
                             score.getExtraTime().getAwayTeam() : score.getFullTime().getAwayTeam() != null ?
                             score.getFullTime().getAwayTeam() : score.getHalfTime().getAwayTeam() != null ?
                             score.getHalfTime().getAwayTeam() : 0;
-                    marqueeText = String.format("%sMatchday %s • %s %s - %s %s %s", tag, match.getMatchday(),
+                    marqueeText = String.format("Matchday %s • %s %s - %s %s %s", match.getMatchday(),
                             match.getHomeTeam().getName(), home, match.getAwayTeam().getName(), away, endIndent);
                 }
             }

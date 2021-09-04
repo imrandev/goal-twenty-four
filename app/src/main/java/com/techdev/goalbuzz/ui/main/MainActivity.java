@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -115,6 +116,10 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         mainBinding.templateReviewBanner.btnReview.setOnClickListener(btnReviewClickListener);
         mainBinding.topMenu.templateAccessories.btnAccessory.setOnClickListener(btnAccessoryClickListener);
         mainBinding.topMenu.templateExplore.btnExplore.setOnClickListener(btnExploreClickListener);
+
+        mainBinding.rvResultList.getViewTreeObserver().addOnWindowFocusChangeListener(hasFocus -> {
+            mainBinding.adView.setVisibility(hasFocus? View.VISIBLE : View.GONE);
+        });
     }
 
     private final View.OnClickListener btnReviewClickListener = v -> playStore();
@@ -145,6 +150,22 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         mainBinding.adView.setAdListener(adListener);
         mainBinding.adViewTop.setAdListener(adListener);
     }
+
+    private final AdListener adListener = new AdListener(){
+        @Override
+        public void onAdLoaded() {
+            mainBinding.tvAdViewTop.setVisibility(View.VISIBLE);
+            mainBinding.adViewTop.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+            mainBinding.tvAdViewTop.setVisibility(View.GONE);
+            mainBinding.adView.setVisibility(View.GONE);
+            mainBinding.adViewTop.setVisibility(View.GONE);
+            Log.e(TAG, "onAdFailedToLoad: " + loadAdError.getMessage());
+        }
+    };
 
     @Override
     public void showMessage(String message) {
@@ -326,24 +347,6 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
     private final BaseRecyclerClickListener<League> leagueRecyclerClickListener = (view, item, position) -> {
         navToFixturesWthExtras(resourceUtils.getLeagueIds()[position]);
-    };
-
-    private final AdListener adListener = new AdListener(){
-        @Override
-        public void onAdLoaded() {
-            super.onAdLoaded();
-            mainBinding.tvAdViewTop.setVisibility(View.VISIBLE);
-            mainBinding.adView.setVisibility(View.VISIBLE);
-            mainBinding.adViewTop.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-            super.onAdFailedToLoad(loadAdError);
-            mainBinding.tvAdViewTop.setVisibility(View.GONE);
-            mainBinding.adView.setVisibility(View.GONE);
-            mainBinding.adViewTop.setVisibility(View.GONE);
-        }
     };
 
     @Override

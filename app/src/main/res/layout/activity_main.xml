@@ -30,13 +30,13 @@
             android:background="#183947"
             android:ellipsize="marquee"
             android:fontFamily="@font/poppins"
-            android:textColor="@android:color/white"
             android:gravity="center_vertical"
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:singleLine="true"
+            android:textColor="@android:color/white"
             android:textStyle="bold"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nested_scrollview"

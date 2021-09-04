@@ -10,7 +10,6 @@ import com.techdev.goalbuzz.adapter.BaseRecyclerViewHolder;
 import com.techdev.goalbuzz.databinding.ItemEmptyViewBinding;
 import com.techdev.goalbuzz.databinding.ItemFixtureBinding;
 import com.techdev.goalbuzz.model.fixture.Match;
-import com.techdev.goalbuzz.util.DateFormatter;
 import com.techdev.goalbuzz.util.MatchUtil;
 
 public class FixtureViewHolder extends BaseRecyclerViewHolder<Match, BaseRecyclerClickListener<Match>> {
@@ -53,6 +52,6 @@ public class FixtureViewHolder extends BaseRecyclerViewHolder<Match, BaseRecycle
         fixtureBinding.itemMatchDay.setText(String.format("Matchday %s", match.getMatchday()));
         fixtureBinding.itemMatchHomeTeam.setText(match.getHomeTeam().getName());
         fixtureBinding.itemMatchAwayTeam.setText(match.getAwayTeam().getName());
-        fixtureBinding.itemMatchTime.setText(String.format("%s %s", MatchUtil.getInstance().getPlayTime(match)));
+        fixtureBinding.itemMatchTime.setText(String.format("%s", MatchUtil.getInstance().getPlayTime(match)));
     }
 }
