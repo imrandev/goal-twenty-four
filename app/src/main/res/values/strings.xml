@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Goal24 Lite</string>
+    <string name="app_name">Goal24</string>
     <string name="data_loading">Loading …</string>
     <string name="point_table">Point Table</string>
     <string name="league_fixtures">Top League Fixtures</string>

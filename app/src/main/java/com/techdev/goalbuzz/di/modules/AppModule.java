@@ -5,8 +5,11 @@ import android.content.Context;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.techdev.goalbuzz.app.GoalKick;
 import com.techdev.goalbuzz.di.scopes.ApplicationContext;
+import com.techdev.goalbuzz.model.live.Match;
 import com.techdev.goalbuzz.network.prefs.PrefManager;
 import com.techdev.goalbuzz.room.database.RoomManager;
+import com.techdev.goalbuzz.service.marquee.MarqueeService;
+import com.techdev.goalbuzz.service.marquee.MatchMarqueeService;
 import com.techdev.goalbuzz.util.ResourceUtils;
 
 import javax.inject.Singleton;
@@ -51,5 +54,10 @@ public class AppModule {
     @Provides
     FirebaseAnalytics provideFirebaseAnalytics(){
         return FirebaseAnalytics.getInstance(provideContext());
+    }
+
+    @Provides
+    MarqueeService<Match> provideMatchMarquee(){
+        return MatchMarqueeService.getInstance();
     }
 }

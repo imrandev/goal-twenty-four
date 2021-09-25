@@ -25,7 +25,7 @@ public class MainContract {
     public interface Presenter extends IBasePresenter<View> {
         void onMatchApiTask();
         void onLoadLeague();
-        void scheduleMatch(Match match, CheckBox checkBox);
+        void toggleSchedule(Match match, CheckBox checkBox);
         void cancelSchedule(int eventId, CheckBox checkBox);
         void sendCrashReport(String errorMessage);
         boolean hasScheduled(Match match);

@@ -43,7 +43,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
-            android:layout_above="@+id/adView"
             android:layout_below="@+id/tv_marquee">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,11 +69,11 @@
 
                 <com.google.android.gms.ads.AdView
                     android:id="@+id/adView_top"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     ads:adSize="LARGE_BANNER"
                     ads:adUnitId="@string/banner_ads_one"
-                    android:padding="@dimen/_5sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@+id/tv_adView_top"
                     app:layout_constraintStart_toStartOf="parent"
@@ -206,16 +205,19 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_highlights"/>
 
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    ads:adSize="LARGE_BANNER"
+                    ads:adUnitId="@string/banner_ads_two"
+                    android:visibility="gone"
+                    android:layout_margin="@dimen/_5sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_highlights"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
-
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:adSize="FULL_WIDTHx50"
-            ads:adUnitId="@string/banner_ads_one"
-            android:visibility="gone"
-            android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 </layout>

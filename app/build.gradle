@@ -51,6 +51,7 @@ android {
             resValue 'string', 'interstitial_ads', 'ca-app-pub-2637758792347105/5219142675'
             resValue 'string', 'banner_ads_one', 'ca-app-pub-2637758792347105/2704659977'
             resValue 'string', 'banner_ads_two', 'ca-app-pub-2637758792347105/2620899498'
+            debuggable false
         }
     }
 
@@ -83,7 +84,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation "android.arch.persistence.room:runtime:1.1.1"
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
-    implementation 'com.google.android.gms:play-services-ads-lite:20.3.0'
+    implementation 'com.google.android.gms:play-services-ads-lite:20.4.0'
 
     implementation platform('com.google.firebase:firebase-bom:26.5.0')
     implementation 'com.google.firebase:firebase-core:19.0.1'

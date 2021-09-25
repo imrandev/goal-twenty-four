@@ -116,10 +116,6 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         mainBinding.templateReviewBanner.btnReview.setOnClickListener(btnReviewClickListener);
         mainBinding.topMenu.templateAccessories.btnAccessory.setOnClickListener(btnAccessoryClickListener);
         mainBinding.topMenu.templateExplore.btnExplore.setOnClickListener(btnExploreClickListener);
-
-        mainBinding.rvResultList.getViewTreeObserver().addOnWindowFocusChangeListener(hasFocus -> {
-            mainBinding.adView.setVisibility(hasFocus? View.VISIBLE : View.GONE);
-        });
     }
 
     private final View.OnClickListener btnReviewClickListener = v -> playStore();
@@ -144,18 +140,35 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     }
 
     private void onAdLoaded() {
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mainBinding.adView.loadAd(adRequest);
-        mainBinding.adViewTop.loadAd(adRequest);
-        mainBinding.adView.setAdListener(adListener);
-        mainBinding.adViewTop.setAdListener(adListener);
+        mainBinding.adView.loadAd(new AdRequest.Builder().build());
+        mainBinding.adViewTop.loadAd(new AdRequest.Builder().build());
+        mainBinding.adView.setAdListener(adViewListener);
+        mainBinding.adViewTop.setAdListener(adViewTopListener);
     }
 
-    private final AdListener adListener = new AdListener(){
+    private final AdListener adViewListener = new AdListener(){
         @Override
         public void onAdLoaded() {
             mainBinding.tvAdViewTop.setVisibility(View.VISIBLE);
             mainBinding.adViewTop.setVisibility(View.VISIBLE);
+            Log.e(TAG, "onAdLoaded: adView Success");
+        }
+
+        @Override
+        public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+            mainBinding.tvAdViewTop.setVisibility(View.GONE);
+            mainBinding.adView.setVisibility(View.GONE);
+            mainBinding.adViewTop.setVisibility(View.GONE);
+            Log.e(TAG, "onAdFailedToLoad: " + loadAdError.getMessage());
+        }
+    };
+
+    private final AdListener adViewTopListener = new AdListener(){
+        @Override
+        public void onAdLoaded() {
+            mainBinding.tvAdViewTop.setVisibility(View.VISIBLE);
+            mainBinding.adViewTop.setVisibility(View.VISIBLE);
+            Log.e(TAG, "onAdLoaded: adViewTop Success");
         }
 
         @Override
@@ -379,7 +392,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         @Override
         public void onItemClickListener(View view, Match item, int position) {
             CheckBox checkBox = view.findViewById(R.id.btn_notification);
-            mMainPresenter.scheduleMatch(item, checkBox);
+            mMainPresenter.toggleSchedule(item, checkBox);
         }
     };
 
