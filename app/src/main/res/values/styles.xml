@@ -19,6 +19,12 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
+    <style name="Toolbar.SubtitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
     <style name="AppTheme.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimaryDark">#0BBB72</item>
     </style>

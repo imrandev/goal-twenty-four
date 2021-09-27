@@ -2,7 +2,7 @@
     <string name="app_name">Goal24</string>
     <string name="data_loading">Loading …</string>
     <string name="point_table">Point Table</string>
-    <string name="league_fixtures">Top League Fixtures</string>
+    <string name="league_fixtures">Top League\'s Fixtures</string>
     <string name="upcoming_matches">Upcoming Match</string>
     <string name="live_matches">Live Match</string>
     <string name="no_live_match_available">No Live\nMatch Available</string>

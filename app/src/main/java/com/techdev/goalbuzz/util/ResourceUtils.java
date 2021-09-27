@@ -35,7 +35,7 @@ public class ResourceUtils {
         return icons;
     }
 
-    public String[] getLeagueNames(){
+    public String[] getNameOfLeagues(){
         return names;
     }
 
@@ -44,7 +44,7 @@ public class ResourceUtils {
     }
 
     public String getLeagueName(String id){
-        return getLeagueNames()[getPositionById(id)];
+        return getNameOfLeagues()[getPositionById(id)];
     }
 
     @DrawableRes

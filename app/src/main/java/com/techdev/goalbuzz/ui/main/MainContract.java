@@ -13,21 +13,17 @@ import java.util.List;
 public class MainContract {
 
     public interface View extends IBaseView {
-        void onLiveView(List<Match> matchList, String message, int count);
-        void onUpcomingView(List<Match> matchList, String message, int count);
-        void onFinishedView(List<Match> matchList, String message, int count);
-        void onTeamView(List<Query> teamList, String message, int count);
-        void onLeagueView(List<League> leagueList);
-        void onChangeMarquee(String text);
-        void updateCheckBox(CheckBox checkBox, boolean scheduled);
+        void showLiveView(List<Match> matchList, String message, int count);
+        void showUpcomingView(List<Match> matchList, String message, int count);
+        void showFinishedView(List<Match> matchList, String message, int count);
+        void showListOfTopLeagues(List<League> leagueList);
+        void showMarquee(String text);
+        void onUpdateScheduleState(CheckBox checkBox, boolean scheduled);
     }
 
     public interface Presenter extends IBasePresenter<View> {
-        void onMatchApiTask();
-        void onLoadLeague();
+        void executeMatchApi();
+        void loadTopLeagues();
         void toggleSchedule(Match match, CheckBox checkBox);
-        void cancelSchedule(int eventId, CheckBox checkBox);
-        void sendCrashReport(String errorMessage);
-        boolean hasScheduled(Match match);
     }
 }

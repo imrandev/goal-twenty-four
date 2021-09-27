@@ -28,7 +28,6 @@ import com.techdev.goalbuzz.adapter.RecyclerViewAdapter;
 import com.techdev.goalbuzz.databinding.ActivityMainBinding;
 import com.techdev.goalbuzz.di.components.ActivityComponent;
 import com.techdev.goalbuzz.model.League;
-import com.techdev.goalbuzz.model.Query;
 import com.techdev.goalbuzz.model.live.Match;
 import com.techdev.goalbuzz.ui.affiliate.AccessoryActivity;
 import com.techdev.goalbuzz.ui.base.BaseActivity;
@@ -65,7 +64,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     @Override
     protected void onConnectivityTask(boolean isConnected) {
         mainBinding.tvOfflineStatus.setVisibility(isConnected ? View.GONE : View.VISIBLE);
-        mMainPresenter.onMatchApiTask();
+        mMainPresenter.executeMatchApi();
         onAdLoaded();
     }
 
@@ -86,7 +85,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         mMainPresenter = presenter;
         mMainPresenter.onAttach(this);
 
-        mMainPresenter.onLoadLeague();
+        mMainPresenter.loadTopLeagues();
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Today's Match");
         setSupportActionBar(toolbar);
@@ -140,28 +139,11 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     }
 
     private void onAdLoaded() {
-        mainBinding.adView.loadAd(new AdRequest.Builder().build());
         mainBinding.adViewTop.loadAd(new AdRequest.Builder().build());
-        mainBinding.adView.setAdListener(adViewListener);
+        mainBinding.adViewBottom.loadAd(new AdRequest.Builder().build());
         mainBinding.adViewTop.setAdListener(adViewTopListener);
+        mainBinding.adViewBottom.setAdListener(adViewBottomListener);
     }
-
-    private final AdListener adViewListener = new AdListener(){
-        @Override
-        public void onAdLoaded() {
-            mainBinding.tvAdViewTop.setVisibility(View.VISIBLE);
-            mainBinding.adViewTop.setVisibility(View.VISIBLE);
-            Log.e(TAG, "onAdLoaded: adView Success");
-        }
-
-        @Override
-        public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-            mainBinding.tvAdViewTop.setVisibility(View.GONE);
-            mainBinding.adView.setVisibility(View.GONE);
-            mainBinding.adViewTop.setVisibility(View.GONE);
-            Log.e(TAG, "onAdFailedToLoad: " + loadAdError.getMessage());
-        }
-    };
 
     private final AdListener adViewTopListener = new AdListener(){
         @Override
@@ -174,8 +156,23 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         @Override
         public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
             mainBinding.tvAdViewTop.setVisibility(View.GONE);
-            mainBinding.adView.setVisibility(View.GONE);
             mainBinding.adViewTop.setVisibility(View.GONE);
+            Log.e(TAG, "onAdFailedToLoad: " + loadAdError.getMessage());
+        }
+    };
+
+    private final AdListener adViewBottomListener = new AdListener(){
+        @Override
+        public void onAdLoaded() {
+            mainBinding.tvAdViewBottom.setVisibility(View.VISIBLE);
+            mainBinding.adViewBottom.setVisibility(View.VISIBLE);
+            Log.e(TAG, "onAdLoaded: adView Success");
+        }
+
+        @Override
+        public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+            mainBinding.tvAdViewBottom.setVisibility(View.GONE);
+            mainBinding.adViewBottom.setVisibility(View.GONE);
             Log.e(TAG, "onAdFailedToLoad: " + loadAdError.getMessage());
         }
     };
@@ -285,7 +282,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
     @Override
     protected void onDestroy() {
-        mainBinding.adView.destroy();
+        mainBinding.adViewBottom.destroy();
         mainBinding.adViewTop.destroy();
         clearMemory();
         mainBinding = null;
@@ -293,7 +290,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     }
 
     @Override
-    public void onLiveView(List<Match> matchList, String message, int count) {
+    public void showLiveView(List<Match> matchList, String message, int count) {
         Collections.shuffle(matchList);
         runOnUiThread(() -> {
             mainBinding.tvLiveCaption.setVisibility(View.VISIBLE);
@@ -303,7 +300,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     }
 
     @Override
-    public void onUpcomingView(List<Match> matchList, String message, int count) {
+    public void showUpcomingView(List<Match> matchList, String message, int count) {
         Collections.shuffle(matchList);
         runOnUiThread(() -> {
             mainBinding.tvUpcomingCaption.setText(String.format("Upcoming Match (%s)", count));
@@ -312,7 +309,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     }
 
     @Override
-    public void onFinishedView(List<Match> matchList, String message, int count) {
+    public void showFinishedView(List<Match> matchList, String message, int count) {
         Collections.shuffle(matchList);
         runOnUiThread(() -> {
             mainBinding.tvResultCaption.setVisibility(View.VISIBLE);
@@ -322,12 +319,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     }
 
     @Override
-    public void onTeamView(List<Query> teamList, String message, int count) {
-
-    }
-
-    @Override
-    public void onLeagueView(List<League> leagueList) {
+    public void showListOfTopLeagues(List<League> leagueList) {
         RecyclerViewAdapter<League, BaseRecyclerClickListener<League>> leagueRecyclerViewAdapter = new RecyclerViewAdapter<League, BaseRecyclerClickListener<League>>(leagueList, leagueRecyclerClickListener) {
             @Override
             public BaseRecyclerViewHolder<League, BaseRecyclerClickListener<League>> getViewHolder(ViewGroup parent) {
@@ -350,7 +342,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     }
 
     @Override
-    public void onChangeMarquee(String text) {
+    public void showMarquee(String text) {
         runOnUiThread(() -> {
             mainBinding.tvMarquee.setVisibility(View.VISIBLE);
             mainBinding.tvMarquee.setSelected(true);
@@ -365,7 +357,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     @Override
     public void onPause() {
         if (mainBinding != null) {
-            mainBinding.adView.pause();
+            mainBinding.adViewBottom.pause();
             mainBinding.adViewTop.pause();
         }
         super.onPause();
@@ -375,7 +367,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     public void onResume() {
         super.onResume();
         if (mainBinding != null) {
-            mainBinding.adView.resume();
+            mainBinding.adViewBottom.resume();
             mainBinding.adViewTop.resume();
         }
     }
@@ -397,7 +389,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     };
 
     @Override
-    public void updateCheckBox(CheckBox checkBox, boolean scheduled) {
+    public void onUpdateScheduleState(CheckBox checkBox, boolean scheduled) {
         checkBox.setChecked(scheduled);
         checkBox.setText(scheduled ? R.string.cancel_notify : R.string.notify);
     }
