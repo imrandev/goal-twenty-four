@@ -1,4 +1,4 @@
-package com.techdev.goalbuzz.network.prefs;
+package com.techdev.goalbuzz.core.network.prefs;
 
 import android.content.Context;
 import android.content.SharedPreferences;

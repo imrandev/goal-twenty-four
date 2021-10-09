@@ -2,7 +2,7 @@ package com.techdev.goalbuzz.ui.affiliate;
 
 import com.techdev.goalbuzz.model.market.Amazon;
 import com.techdev.goalbuzz.model.market.Product;
-import com.techdev.goalbuzz.network.response.EnqueueResponse;
+import com.techdev.goalbuzz.core.network.response.EnqueueResponse;
 import com.techdev.goalbuzz.ui.base.BasePresenter;
 
 import java.util.ArrayList;

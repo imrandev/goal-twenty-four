@@ -1,4 +1,4 @@
-package com.techdev.goalbuzz.network.response;
+package com.techdev.goalbuzz.core.network.response;
 
 import android.util.Log;
 

@@ -12,8 +12,8 @@ import com.techdev.goalbuzz.di.scopes.BatScope;
 import com.techdev.goalbuzz.di.scopes.DBSportsScope;
 import com.techdev.goalbuzz.di.scopes.FootballScope;
 import com.techdev.goalbuzz.di.scopes.ApplicationContext;
-import com.techdev.goalbuzz.network.client.RetrofitClient;
-import com.techdev.goalbuzz.network.prefs.PrefManager;
+import com.techdev.goalbuzz.core.network.client.ApiClient;
+import com.techdev.goalbuzz.core.network.prefs.PrefManager;
 import com.techdev.goalbuzz.room.database.AppExecutors;
 import com.techdev.goalbuzz.room.database.RoomManager;
 import com.techdev.goalbuzz.room.model.Admob;
@@ -31,19 +31,19 @@ public class BasePresenter<V extends IBaseView> implements IBasePresenter<V> {
 
     @Inject
     @FootballScope
-    protected RetrofitClient retrofitClient;
+    protected ApiClient apiClient;
 
     @Inject
     @DBSportsScope
-    protected RetrofitClient retrofitDbClient;
+    protected ApiClient retrofitDbClient;
 
     @Inject
     @AmazonScope
-    protected RetrofitClient amazonClient;
+    protected ApiClient amazonClient;
 
     @Inject
     @BatScope
-    protected RetrofitClient sportsBatClient;
+    protected ApiClient sportsBatClient;
 
     @Inject
     PrefManager prefManager;

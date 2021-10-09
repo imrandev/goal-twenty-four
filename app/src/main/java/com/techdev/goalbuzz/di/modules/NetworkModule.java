@@ -7,13 +7,14 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.techdev.goalbuzz.core.network.client.ApiClient;
 import com.techdev.goalbuzz.di.scopes.AmazonScope;
 import com.techdev.goalbuzz.di.scopes.BatScope;
 import com.techdev.goalbuzz.di.scopes.DBSportsScope;
 import com.techdev.goalbuzz.di.scopes.FootballScope;
 import com.techdev.goalbuzz.di.scopes.ApplicationContext;
-import com.techdev.goalbuzz.network.client.ApiRepository;
-import com.techdev.goalbuzz.network.client.RetrofitClient;
+import com.techdev.goalbuzz.core.network.client.ApiRepository;
+import com.techdev.goalbuzz.di.scopes.WithToken;
 import com.techdev.goalbuzz.util.Constant;
 
 import java.io.File;
@@ -53,33 +54,19 @@ public class NetworkModule {
 
     @Provides
     @Singleton
+    @WithToken
     OkHttpClient provideOkHttpClient(Cache cache) {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.addInterceptor(provideOfflineCacheInterceptor());
+        httpClient.addInterceptor(provideOfflineCacheInterceptor(true));
         httpClient.cache(cache);
         return httpClient.build();
     }
 
     @Provides
     @Singleton
-    @AmazonScope
-    OkHttpClient provideOkHttpClient2(Cache cache) {
+    OkHttpClient provideOkHttpClientWithoutToken(Cache cache) {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.addInterceptor(chain -> {
-            try {
-                CacheControl cacheControl = new CacheControl.Builder()
-                        .maxStale(5, TimeUnit.MINUTES)
-                        .build();
-                Request original = chain.request();
-                Request request = original.newBuilder()
-                        .cacheControl(hasNetwork() ? cacheControl : CacheControl.FORCE_CACHE)
-                        .method(original.method(), original.body())
-                        .build();
-                return chain.proceed(request);
-            } catch (Exception e) {
-                throw new IOException(e.getMessage());
-            }
-        });
+        httpClient.addInterceptor(provideOfflineCacheInterceptor(false));
         httpClient.cache(cache);
         return httpClient.build();
     }
@@ -87,7 +74,7 @@ public class NetworkModule {
     @Provides
     @Singleton
     @FootballScope
-    Retrofit provideApiRetrofit(Gson gson, OkHttpClient okHttpClient) {
+    Retrofit provideApiRetrofit(Gson gson, @WithToken OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(Constant.BASE_URL)
@@ -120,7 +107,7 @@ public class NetworkModule {
     @Provides
     @Singleton
     @AmazonScope
-    Retrofit provideRetrofit(Gson gson, @AmazonScope OkHttpClient okHttpClient) {
+    Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl("https://goal24dev.web.app/")
@@ -131,33 +118,33 @@ public class NetworkModule {
     @Provides
     @Singleton
     @FootballScope
-    static RetrofitClient provideApiRepository(@FootballScope Retrofit retrofit){
+    static ApiClient provideApiClient(@FootballScope Retrofit retrofit){
         ApiRepository apiRepository = retrofit.create(ApiRepository.class);
-        return new RetrofitClient(apiRepository);
+        return new ApiClient(apiRepository);
     }
 
     @Provides
     @Singleton
     @DBSportsScope
-    static RetrofitClient provideDbRepository(@DBSportsScope Retrofit retrofit){
+    static ApiClient provideDbApiClient(@DBSportsScope Retrofit retrofit){
         ApiRepository apiRepository = retrofit.create(ApiRepository.class);
-        return new RetrofitClient(apiRepository);
+        return new ApiClient(apiRepository);
     }
 
     @Provides
     @Singleton
     @AmazonScope
-    static RetrofitClient provideRepository(@AmazonScope Retrofit retrofit){
+    static ApiClient provideAmazonApiClient(@AmazonScope Retrofit retrofit){
         ApiRepository apiRepository = retrofit.create(ApiRepository.class);
-        return new RetrofitClient(apiRepository);
+        return new ApiClient(apiRepository);
     }
 
     @Provides
     @Singleton
     @BatScope
-    static RetrofitClient provideBatRepository(@BatScope Retrofit retrofit){
+    static ApiClient provideBatApiClient(@BatScope Retrofit retrofit){
         ApiRepository apiRepository = retrofit.create(ApiRepository.class);
-        return new RetrofitClient(apiRepository);
+        return new ApiClient(apiRepository);
     }
 
     @Provides
@@ -181,18 +168,19 @@ public class NetworkModule {
         return activeNetwork != null && activeNetwork.isConnected();
     }
 
-    private Interceptor provideOfflineCacheInterceptor(){
+    private Interceptor provideOfflineCacheInterceptor(boolean hasToken){
         return chain -> {
             try {
                 CacheControl cacheControl = new CacheControl.Builder()
                         .maxStale(5, TimeUnit.MINUTES)
                         .build();
                 Request original = chain.request();
-                Request request = original.newBuilder()
-                        .header("X-Auth-Token", Constant.API_TOKEN)
+                Request.Builder requestBuilder = original.newBuilder()
                         .cacheControl(hasNetwork() ? cacheControl : CacheControl.FORCE_CACHE)
-                        .method(original.method(), original.body())
-                        .build();
+                        .method(original.method(), original.body());
+                if (hasToken)
+                    requestBuilder.header("X-Auth-Token", Constant.API_TOKEN);
+                Request request = requestBuilder.build();
                 return chain.proceed(request);
             } catch (Exception e) {
                 throw new IOException(e.getMessage());

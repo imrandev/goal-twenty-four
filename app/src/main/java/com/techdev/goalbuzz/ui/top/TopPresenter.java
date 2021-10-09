@@ -2,7 +2,7 @@ package com.techdev.goalbuzz.ui.top;
 
 import com.techdev.goalbuzz.model.top.Scorer;
 import com.techdev.goalbuzz.model.top.TopScorer;
-import com.techdev.goalbuzz.network.response.EnqueueResponse;
+import com.techdev.goalbuzz.core.network.response.EnqueueResponse;
 import com.techdev.goalbuzz.ui.base.BasePresenter;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class TopPresenter extends BasePresenter<TopContract.View> implements Top
     @Override
     public void onTopScorerApiTask(String leagueId) {
         view.showLoader();
-        topScorerCall = retrofitClient.getRepository().getTopScorerInfoById(leagueId);
+        topScorerCall = apiClient.getRepository().getTopScorerInfoById(leagueId);
 
         topScorerCall.enqueue(new EnqueueResponse<TopScorer>() {
             @Override

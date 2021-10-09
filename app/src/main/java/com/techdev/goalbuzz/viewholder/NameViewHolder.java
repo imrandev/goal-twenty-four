@@ -7,8 +7,8 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.databinding.ViewDataBinding;
 
 import com.techdev.goalbuzz.R;
-import com.techdev.goalbuzz.adapter.BaseRecyclerClickListener;
-import com.techdev.goalbuzz.adapter.BaseRecyclerViewHolder;
+import com.techdev.goalbuzz.core.adapter.BaseRecyclerClickListener;
+import com.techdev.goalbuzz.core.adapter.BaseRecyclerViewHolder;
 import com.techdev.goalbuzz.databinding.ItemEmptyViewBinding;
 import com.techdev.goalbuzz.databinding.ItemTeamBinding;
 import com.techdev.goalbuzz.model.Query;

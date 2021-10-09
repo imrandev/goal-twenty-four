@@ -5,8 +5,8 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.databinding.ViewDataBinding;
 
-import com.techdev.goalbuzz.adapter.BaseRecyclerClickListener;
-import com.techdev.goalbuzz.adapter.BaseRecyclerViewHolder;
+import com.techdev.goalbuzz.core.adapter.BaseRecyclerClickListener;
+import com.techdev.goalbuzz.core.adapter.BaseRecyclerViewHolder;
 import com.techdev.goalbuzz.databinding.ItemEmptyViewBinding;
 import com.techdev.goalbuzz.databinding.ItemFixtureBinding;
 import com.techdev.goalbuzz.model.fixture.Match;

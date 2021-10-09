@@ -1,4 +1,4 @@
-package com.techdev.goalbuzz.adapter;
+package com.techdev.goalbuzz.core.adapter;
 
 import android.view.ViewGroup;
 

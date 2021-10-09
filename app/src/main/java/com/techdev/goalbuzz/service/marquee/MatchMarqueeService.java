@@ -7,7 +7,7 @@ import com.techdev.goalbuzz.util.MatchUtil;
 
 import java.util.List;
 
-public class MatchMarqueeService implements MarqueeService<Match> {
+public class MatchMarqueeService implements IMarqueeService<Match> {
 
     private static MatchMarqueeService instance;
     private final String[] matchTypes = {"IN_PLAY", "FINISHED", "SCHEDULED"};

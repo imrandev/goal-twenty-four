@@ -16,9 +16,9 @@ import android.view.ViewGroup;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.techdev.goalbuzz.R;
-import com.techdev.goalbuzz.adapter.BaseRecyclerClickListener;
-import com.techdev.goalbuzz.adapter.BaseRecyclerViewHolder;
-import com.techdev.goalbuzz.adapter.RecyclerViewAdapter;
+import com.techdev.goalbuzz.core.adapter.BaseRecyclerClickListener;
+import com.techdev.goalbuzz.core.adapter.BaseRecyclerViewHolder;
+import com.techdev.goalbuzz.core.adapter.RecyclerViewAdapter;
 import com.techdev.goalbuzz.databinding.FragmentTopBinding;
 import com.techdev.goalbuzz.di.components.FragmentComponent;
 import com.techdev.goalbuzz.interfaces.PassExtraToActivity;

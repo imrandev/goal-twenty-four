@@ -1,4 +1,4 @@
-package com.techdev.goalbuzz.network.client;
+package com.techdev.goalbuzz.core.network.client;
 
 import com.techdev.goalbuzz.model.fixture.Fixtures;
 import com.techdev.goalbuzz.model.league.League;

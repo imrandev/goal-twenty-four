@@ -10,9 +10,9 @@ import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.techdev.goalbuzz.R;
-import com.techdev.goalbuzz.adapter.BaseRecyclerClickListener;
-import com.techdev.goalbuzz.adapter.BaseRecyclerViewHolder;
-import com.techdev.goalbuzz.adapter.RecyclerViewAdapter;
+import com.techdev.goalbuzz.core.adapter.BaseRecyclerClickListener;
+import com.techdev.goalbuzz.core.adapter.BaseRecyclerViewHolder;
+import com.techdev.goalbuzz.core.adapter.RecyclerViewAdapter;
 import com.techdev.goalbuzz.databinding.ItemEmptyViewBinding;
 import com.techdev.goalbuzz.databinding.ItemPointTableMultiBinding;
 import com.techdev.goalbuzz.di.scopes.ApplicationContext;

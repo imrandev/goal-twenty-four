@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.techdev.goalbuzz.model.fixture.Fixtures;
 import com.techdev.goalbuzz.model.fixture.Match;
-import com.techdev.goalbuzz.network.response.EnqueueResponse;
+import com.techdev.goalbuzz.core.network.response.EnqueueResponse;
 import com.techdev.goalbuzz.ui.base.BasePresenter;
 import com.techdev.goalbuzz.util.Constant;
 
@@ -30,7 +30,7 @@ public class FixturePresenter extends BasePresenter<FixtureContract.View> implem
     @Override
     public void onFixtureApiTask(String leagueId) {
         view.showLoader();
-        fixturesCall = retrofitClient.getRepository().getFixturesByLeagueId(leagueId, Constant.UPCOMING_MATCH);
+        fixturesCall = apiClient.getRepository().getFixturesByLeagueId(leagueId, Constant.UPCOMING_MATCH);
         fixturesCall.enqueue(new EnqueueResponse<Fixtures>() {
             @Override
             public void onReceived(Fixtures body, String message) {

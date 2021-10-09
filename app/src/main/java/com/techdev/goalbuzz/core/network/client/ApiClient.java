@@ -1,12 +1,10 @@
-package com.techdev.goalbuzz.network.client;
+package com.techdev.goalbuzz.core.network.client;
 
-import javax.inject.Inject;
-
-public class RetrofitClient {
+public class ApiClient {
 
     private final ApiRepository apiRepository;
 
-    public RetrofitClient(ApiRepository apiRepository) {
+    public ApiClient(ApiRepository apiRepository) {
         this.apiRepository = apiRepository;
     }
 

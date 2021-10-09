@@ -4,7 +4,7 @@ package com.techdev.goalbuzz.model.fixture;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.techdev.goalbuzz.adapter.BaseItemType;
+import com.techdev.goalbuzz.core.adapter.BaseItemType;
 
 public class Fixtures implements BaseItemType {
 

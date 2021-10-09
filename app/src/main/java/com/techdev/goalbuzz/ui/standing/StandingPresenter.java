@@ -2,7 +2,7 @@ package com.techdev.goalbuzz.ui.standing;
 
 import com.techdev.goalbuzz.model.point.PointTable;
 import com.techdev.goalbuzz.model.point.Standing;
-import com.techdev.goalbuzz.network.response.EnqueueResponse;
+import com.techdev.goalbuzz.core.network.response.EnqueueResponse;
 import com.techdev.goalbuzz.ui.base.BasePresenter;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class StandingPresenter extends BasePresenter<StandingContract.View> impl
     @Override
     public void onStandingApiTask(String leagueId) {
         view.showLoader();
-        pointTableCall = retrofitClient.getRepository().getStandingsByLeague(leagueId);
+        pointTableCall = apiClient.getRepository().getStandingsByLeague(leagueId);
 
         pointTableCall.enqueue(new EnqueueResponse<PointTable>() {
             @Override

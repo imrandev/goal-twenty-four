@@ -5,9 +5,9 @@ import android.widget.CheckBox;
 import com.techdev.goalbuzz.model.League;
 import com.techdev.goalbuzz.model.live.Live;
 import com.techdev.goalbuzz.model.live.Match;
-import com.techdev.goalbuzz.network.response.EnqueueResponse;
+import com.techdev.goalbuzz.core.network.response.EnqueueResponse;
 import com.techdev.goalbuzz.room.database.AppExecutors;
-import com.techdev.goalbuzz.service.marquee.MarqueeService;
+import com.techdev.goalbuzz.service.marquee.IMarqueeService;
 import com.techdev.goalbuzz.service.match.MatchService;
 import com.techdev.goalbuzz.service.schedule.MatchScheduleService;
 import com.techdev.goalbuzz.ui.base.BasePresenter;
@@ -24,7 +24,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     private Call<Live> requestLiveApi;
 
     @Inject
-    public MarqueeService<Match> marqueeService;
+    public IMarqueeService<Match> marqueeService;
 
     @Inject
     MainPresenter() {
@@ -34,7 +34,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     @Override
     public void executeMatchApi() {
         view.showLoader();
-        requestLiveApi = retrofitClient.getRepository().getMatches();
+        requestLiveApi = apiClient.getRepository().getMatches();
         requestLiveApi.enqueue(new EnqueueResponse<Live>() {
             @Override
             public void onReceived(Live body, String message) {
