@@ -1,8 +1,8 @@
 package com.techdev.goalbuzz.ui.team;
 
 import com.techdev.goalbuzz.model.team.Team;
-import com.techdev.goalbuzz.ui.base.IBasePresenter;
-import com.techdev.goalbuzz.ui.base.IBaseView;
+import com.techdev.goalbuzz.core.presentation.base.IBasePresenter;
+import com.techdev.goalbuzz.core.presentation.base.IBaseView;
 
 public class TeamContract {
 

@@ -31,8 +31,8 @@ import com.techdev.goalbuzz.databinding.ActivityFixtureBinding;
 import com.techdev.goalbuzz.di.components.ActivityComponent;
 import com.techdev.goalbuzz.model.League;
 import com.techdev.goalbuzz.model.fixture.Match;
-import com.techdev.goalbuzz.ui.base.BaseActivity;
-import com.techdev.goalbuzz.util.Constant;
+import com.techdev.goalbuzz.core.presentation.base.BaseActivity;
+import com.techdev.goalbuzz.core.util.Constant;
 import com.techdev.goalbuzz.viewholder.FixtureViewHolder;
 
 import java.util.ArrayList;

@@ -8,7 +8,7 @@ import com.techdev.goalbuzz.core.adapter.BaseRecyclerViewHolder;
 import com.techdev.goalbuzz.databinding.ItemEmptyViewBinding;
 import com.techdev.goalbuzz.databinding.ItemTopScorerBinding;
 import com.techdev.goalbuzz.model.top.Scorer;
-import com.techdev.goalbuzz.util.DateFormatter;
+import com.techdev.goalbuzz.core.util.DateFormatter;
 
 public class TopViewHolder extends BaseRecyclerViewHolder<Scorer, BaseRecyclerClickListener<Scorer>> {
 

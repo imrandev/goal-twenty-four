@@ -5,9 +5,9 @@ import android.util.Log;
 
 import com.techdev.goalbuzz.model.fixture.Fixtures;
 import com.techdev.goalbuzz.model.fixture.Match;
-import com.techdev.goalbuzz.core.network.response.EnqueueResponse;
-import com.techdev.goalbuzz.ui.base.BasePresenter;
-import com.techdev.goalbuzz.util.Constant;
+import com.techdev.goalbuzz.core.datasource.remote.response.EnqueueResponse;
+import com.techdev.goalbuzz.core.presentation.base.BasePresenter;
+import com.techdev.goalbuzz.core.util.Constant;
 
 import java.util.ArrayList;
 import java.util.List;

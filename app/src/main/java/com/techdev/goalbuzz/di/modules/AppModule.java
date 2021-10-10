@@ -5,12 +5,12 @@ import android.content.Context;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.techdev.goalbuzz.app.GoalKick;
 import com.techdev.goalbuzz.di.scopes.ApplicationContext;
-import com.techdev.goalbuzz.model.live.Match;
-import com.techdev.goalbuzz.core.network.prefs.PrefManager;
-import com.techdev.goalbuzz.room.database.RoomManager;
+import com.techdev.goalbuzz.featureMain.domain.models.Match;
+import com.techdev.goalbuzz.core.datasource.local.prefs.PrefManager;
+import com.techdev.goalbuzz.core.datasource.local.db.database.DatabaseManager;
 import com.techdev.goalbuzz.service.marquee.IMarqueeService;
 import com.techdev.goalbuzz.service.marquee.MatchMarqueeService;
-import com.techdev.goalbuzz.util.ResourceUtils;
+import com.techdev.goalbuzz.core.util.ResourceUtils;
 
 import javax.inject.Singleton;
 
@@ -47,8 +47,8 @@ public class AppModule {
 
     @Provides
     @Singleton
-    static RoomManager provideRoomDatabase(@ApplicationContext Context context) {
-        return RoomManager.getInstance(context);
+    static DatabaseManager provideRoomDatabase(@ApplicationContext Context context) {
+        return DatabaseManager.getInstance(context);
     }
 
     @Provides

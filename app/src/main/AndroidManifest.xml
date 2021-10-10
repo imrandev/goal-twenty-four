@@ -23,7 +23,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".ui.explore.ExploreActivity"
+            android:name=".featureExplores.presentation.ExploreActivity"
             android:exported="true" />
         <activity
             android:name=".ui.videos.VideoHighlightsActivity"
@@ -43,7 +43,7 @@
 
         <activity android:name=".ui.team.TeamActivity" />
         <activity android:name=".ui.top.TopActivity" />
-        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".featureMain.presentation.MainActivity" />
         <activity android:name=".ui.standing.StandingActivity" />
         <activity android:name=".ui.fixture.FixtureActivity" />
         <activity android:name=".ui.splash.SplashActivity"

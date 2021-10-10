@@ -12,14 +12,12 @@ import android.os.Bundle;
 import androidx.core.app.NotificationCompat;
 
 import com.techdev.goalbuzz.R;
-import com.techdev.goalbuzz.model.live.Match;
-import com.techdev.goalbuzz.room.database.AppExecutors;
-import com.techdev.goalbuzz.room.database.RoomManager;
-import com.techdev.goalbuzz.room.model.Result;
-import com.techdev.goalbuzz.ui.main.MainActivity;
-import com.techdev.goalbuzz.util.Constant;
-import com.techdev.goalbuzz.util.DateFormatter;
-import com.techdev.goalbuzz.util.MatchUtil;
+import com.techdev.goalbuzz.core.datasource.local.db.entities.Match;
+import com.techdev.goalbuzz.core.util.AppExecutors;
+import com.techdev.goalbuzz.core.datasource.local.db.database.DatabaseManager;
+import com.techdev.goalbuzz.featureMain.presentation.MainActivity;
+import com.techdev.goalbuzz.core.util.Constant;
+import com.techdev.goalbuzz.core.util.MatchUtil;
 
 import java.util.Random;
 
@@ -31,7 +29,7 @@ public class NotificationPublisher extends BroadcastReceiver {
         Bundle extras = intent.getBundleExtra(Constant.BROADCAST_SERIALIZABLE_BUNDLE_EXTRA);
 
         if (extras != null){
-            Match match = (Match) extras.getSerializable(Constant.BROADCAST_SERIALIZABLE_BUNDLE_EXTRA);
+            com.techdev.goalbuzz.featureMain.domain.models.Match match = (com.techdev.goalbuzz.featureMain.domain.models.Match) extras.getSerializable(Constant.BROADCAST_SERIALIZABLE_BUNDLE_EXTRA);
 
             Intent notificationIntent = new Intent(context, MainActivity.class);
             PendingIntent pendingIntent
@@ -58,9 +56,9 @@ public class NotificationPublisher extends BroadcastReceiver {
             }
             notificationManager.notify(match.getId() , notification);
             AppExecutors.getInstance().diskIO().execute(() -> {
-                Result result = RoomManager.getInstance(context).resultDao().findById(match.getId());
+                Match result = DatabaseManager.getInstance(context).resultDao().findById(match.getId());
                 if (result != null){
-                    RoomManager.getInstance(context).resultDao().delete(result);
+                    DatabaseManager.getInstance(context).resultDao().delete(result);
                 }
             });
         }

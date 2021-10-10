@@ -6,10 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.techdev.goalbuzz.event.OnLongClickListener;
-import com.techdev.goalbuzz.event.OnSingleClickListener;
+import com.techdev.goalbuzz.core.adapter.event.OnLongClickListener;
+import com.techdev.goalbuzz.core.adapter.event.OnSingleClickListener;
 
-import static com.techdev.goalbuzz.util.Constant.CLICK_TIME_INTERVAL;
+import static com.techdev.goalbuzz.core.util.Constant.CLICK_TIME_INTERVAL;
 
 public abstract class BaseRecyclerViewHolder<T, L> extends RecyclerView.ViewHolder {
 

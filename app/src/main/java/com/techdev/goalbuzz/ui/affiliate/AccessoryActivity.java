@@ -26,9 +26,9 @@ import com.techdev.goalbuzz.core.adapter.RecyclerViewAdapter;
 import com.techdev.goalbuzz.databinding.ActivityAccessoryBinding;
 import com.techdev.goalbuzz.di.components.ActivityComponent;
 import com.techdev.goalbuzz.model.market.Product;
-import com.techdev.goalbuzz.ui.base.BaseActivity;
-import com.techdev.goalbuzz.util.CustomTabActivityHelper;
-import com.techdev.goalbuzz.util.WebViewFallback;
+import com.techdev.goalbuzz.core.presentation.base.BaseActivity;
+import com.techdev.goalbuzz.core.util.CustomTabActivityHelper;
+import com.techdev.goalbuzz.core.util.WebViewFallback;
 import com.techdev.goalbuzz.viewholder.AccessoryViewHolder;
 
 import java.util.List;

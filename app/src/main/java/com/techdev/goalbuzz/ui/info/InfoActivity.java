@@ -8,7 +8,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.techdev.goalbuzz.R;
 import com.techdev.goalbuzz.databinding.ActivityInfoBinding;
 import com.techdev.goalbuzz.di.components.ActivityComponent;
-import com.techdev.goalbuzz.ui.base.BaseActivity;
+import com.techdev.goalbuzz.core.presentation.base.BaseActivity;
 
 public class InfoActivity extends BaseActivity<InfoContract.Presenter> implements InfoContract.View {
 

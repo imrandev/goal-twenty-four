@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rootView"
-        tools:context=".ui.explore.ExploreActivity">
+        tools:context=".featureExplores.presentation.ExploreActivity">
 
         <include
             android:id="@+id/appbar"

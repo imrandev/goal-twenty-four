@@ -2,8 +2,8 @@ package com.techdev.goalbuzz.ui.top;
 
 import com.techdev.goalbuzz.model.League;
 import com.techdev.goalbuzz.model.top.Scorer;
-import com.techdev.goalbuzz.ui.base.IBasePresenter;
-import com.techdev.goalbuzz.ui.base.IBaseView;
+import com.techdev.goalbuzz.core.presentation.base.IBasePresenter;
+import com.techdev.goalbuzz.core.presentation.base.IBaseView;
 
 import java.util.List;
 

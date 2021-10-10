@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rootView"
-        tools:context=".ui.main.MainActivity">
+        tools:context=".featureMain.presentation.MainActivity">
 
         <include
             android:id="@+id/appbar"
@@ -96,7 +96,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/adView_top" />
 
-                <com.techdev.goalbuzz.view.AutofitRecyclerView
+                <com.techdev.goalbuzz.core.view.AutofitRecyclerView
                     android:id="@+id/rv_league_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -146,7 +146,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rv_upcoming_list" />
 
-                <com.techdev.goalbuzz.view.TouchableRecyclerView
+                <com.techdev.goalbuzz.core.view.TouchableRecyclerView
                     android:id="@+id/rv_live_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

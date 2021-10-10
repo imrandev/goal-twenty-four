@@ -3,7 +3,7 @@ package com.techdev.goalbuzz.ui.videos;
 import android.os.Bundle;
 
 import com.techdev.goalbuzz.R;
-import com.techdev.goalbuzz.ui.base.BaseActivity;
+import com.techdev.goalbuzz.core.presentation.base.BaseActivity;
 
 public class VideoHighlightsActivity extends BaseActivity<VideoHighlightsContract.Presenter> {
 

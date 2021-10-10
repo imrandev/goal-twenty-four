@@ -42,7 +42,7 @@
 -keep class com.techdev.goalbuzz.model.top.* { *; }
 -keep class com.techdev.goalbuzz.model.market.* { *; }
 
--keep class com.techdev.goalbuzz.room.model.* { *; }
+-keep class com.techdev.goalbuzz.featureExplores.domain.models.* { *; }
 
 # Platform calls Class.forName on types which do not exist on Android to determine platform.
 -dontnote retrofit2.Platform

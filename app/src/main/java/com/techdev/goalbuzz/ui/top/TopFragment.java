@@ -24,8 +24,8 @@ import com.techdev.goalbuzz.di.components.FragmentComponent;
 import com.techdev.goalbuzz.interfaces.PassExtraToActivity;
 import com.techdev.goalbuzz.model.League;
 import com.techdev.goalbuzz.model.top.Scorer;
-import com.techdev.goalbuzz.ui.base.BaseFragment;
-import com.techdev.goalbuzz.util.Constant;
+import com.techdev.goalbuzz.core.presentation.base.BaseFragment;
+import com.techdev.goalbuzz.core.util.Constant;
 import com.techdev.goalbuzz.viewholder.TopViewHolder;
 
 import java.util.List;

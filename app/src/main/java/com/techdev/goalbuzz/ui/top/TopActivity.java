@@ -1,7 +1,6 @@
 package com.techdev.goalbuzz.ui.top;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
@@ -11,7 +10,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.ViewDataBinding;
 import androidx.navigation.Navigation;
 
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
@@ -20,9 +18,8 @@ import com.techdev.goalbuzz.R;
 import com.techdev.goalbuzz.databinding.ActivityTopBinding;
 import com.techdev.goalbuzz.di.components.ActivityComponent;
 import com.techdev.goalbuzz.interfaces.PassExtraToActivity;
-import com.techdev.goalbuzz.ui.base.BaseActivity;
-import com.techdev.goalbuzz.ui.fixture.FixtureActivity;
-import com.techdev.goalbuzz.util.Constant;
+import com.techdev.goalbuzz.core.presentation.base.BaseActivity;
+import com.techdev.goalbuzz.core.util.Constant;
 
 import java.util.Objects;
 

@@ -1,7 +1,7 @@
 package com.techdev.goalbuzz.ui.info;
 
-import com.techdev.goalbuzz.ui.base.IBasePresenter;
-import com.techdev.goalbuzz.ui.base.IBaseView;
+import com.techdev.goalbuzz.core.presentation.base.IBasePresenter;
+import com.techdev.goalbuzz.core.presentation.base.IBaseView;
 
 /**
  * Created by Imran Khan on 3/12/2021.

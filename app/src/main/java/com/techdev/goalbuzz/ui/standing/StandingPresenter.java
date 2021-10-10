@@ -2,8 +2,8 @@ package com.techdev.goalbuzz.ui.standing;
 
 import com.techdev.goalbuzz.model.point.PointTable;
 import com.techdev.goalbuzz.model.point.Standing;
-import com.techdev.goalbuzz.core.network.response.EnqueueResponse;
-import com.techdev.goalbuzz.ui.base.BasePresenter;
+import com.techdev.goalbuzz.core.datasource.remote.response.EnqueueResponse;
+import com.techdev.goalbuzz.core.presentation.base.BasePresenter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -12,8 +12,8 @@ import com.techdev.goalbuzz.R;
 import com.techdev.goalbuzz.databinding.ActivityTeamBinding;
 import com.techdev.goalbuzz.di.components.ActivityComponent;
 import com.techdev.goalbuzz.model.team.Team;
-import com.techdev.goalbuzz.ui.base.BaseActivity;
-import com.techdev.goalbuzz.util.Constant;
+import com.techdev.goalbuzz.core.presentation.base.BaseActivity;
+import com.techdev.goalbuzz.core.util.Constant;
 
 public class TeamActivity extends BaseActivity<TeamContract.Presenter> implements TeamContract.View {
 

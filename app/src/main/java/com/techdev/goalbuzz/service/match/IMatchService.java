@@ -1,12 +1,12 @@
 package com.techdev.goalbuzz.service.match;
 
-import com.techdev.goalbuzz.model.live.Match;
-import com.techdev.goalbuzz.room.database.RoomManager;
+import com.techdev.goalbuzz.featureMain.domain.models.Match;
+import com.techdev.goalbuzz.core.datasource.local.db.database.DatabaseManager;
 
 import java.util.List;
 
 public interface IMatchService {
-    List<Match> getUpcoming(RoomManager roomManager);
+    List<Match> getUpcoming(DatabaseManager databaseManager);
     List<Match> getResults();
     List<Match> getLives();
     List<Match> getFullList();

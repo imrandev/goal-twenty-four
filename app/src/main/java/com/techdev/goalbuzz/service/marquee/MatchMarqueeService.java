@@ -1,9 +1,9 @@
 package com.techdev.goalbuzz.service.marquee;
 
-import com.techdev.goalbuzz.model.live.Match;
-import com.techdev.goalbuzz.model.live.Score;
-import com.techdev.goalbuzz.util.Constant;
-import com.techdev.goalbuzz.util.MatchUtil;
+import com.techdev.goalbuzz.featureMain.domain.models.Match;
+import com.techdev.goalbuzz.featureMain.domain.models.Score;
+import com.techdev.goalbuzz.core.util.Constant;
+import com.techdev.goalbuzz.core.util.MatchUtil;
 
 import java.util.List;
 

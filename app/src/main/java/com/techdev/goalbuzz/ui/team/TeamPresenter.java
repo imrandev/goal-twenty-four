@@ -2,8 +2,8 @@ package com.techdev.goalbuzz.ui.team;
 
 import com.techdev.goalbuzz.model.team.Team;
 import com.techdev.goalbuzz.model.team.TeamInfo;
-import com.techdev.goalbuzz.core.network.response.EnqueueResponse;
-import com.techdev.goalbuzz.ui.base.BasePresenter;
+import com.techdev.goalbuzz.core.datasource.remote.response.EnqueueResponse;
+import com.techdev.goalbuzz.core.presentation.base.BasePresenter;
 
 import java.util.List;
 

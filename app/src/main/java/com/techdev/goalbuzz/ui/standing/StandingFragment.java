@@ -25,8 +25,8 @@ import com.techdev.goalbuzz.interfaces.PassExtraToActivity;
 import com.techdev.goalbuzz.model.League;
 import com.techdev.goalbuzz.model.point.Standing;
 import com.techdev.goalbuzz.model.point.Table;
-import com.techdev.goalbuzz.ui.base.BaseFragment;
-import com.techdev.goalbuzz.util.Constant;
+import com.techdev.goalbuzz.core.presentation.base.BaseFragment;
+import com.techdev.goalbuzz.core.util.Constant;
 import com.techdev.goalbuzz.viewholder.MultiHeaderPointHolder;
 import com.techdev.goalbuzz.viewholder.SingleHeaderPointHolder;
 

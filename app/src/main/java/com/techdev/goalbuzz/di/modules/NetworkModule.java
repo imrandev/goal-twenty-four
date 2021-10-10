@@ -7,15 +7,15 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.techdev.goalbuzz.core.network.client.ApiClient;
+import com.techdev.goalbuzz.core.datasource.remote.client.ApiClient;
 import com.techdev.goalbuzz.di.scopes.AmazonScope;
 import com.techdev.goalbuzz.di.scopes.BatScope;
 import com.techdev.goalbuzz.di.scopes.DBSportsScope;
 import com.techdev.goalbuzz.di.scopes.FootballScope;
 import com.techdev.goalbuzz.di.scopes.ApplicationContext;
-import com.techdev.goalbuzz.core.network.client.ApiRepository;
+import com.techdev.goalbuzz.core.datasource.remote.client.ApiRepository;
 import com.techdev.goalbuzz.di.scopes.WithToken;
-import com.techdev.goalbuzz.util.Constant;
+import com.techdev.goalbuzz.core.util.Constant;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +33,7 @@ import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.techdev.goalbuzz.util.Constant.MAX_CACHE_SIZE;
+import static com.techdev.goalbuzz.core.util.Constant.MAX_CACHE_SIZE;
 
 @Module
 public class NetworkModule {

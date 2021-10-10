@@ -5,23 +5,18 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.techdev.goalbuzz.model.live.Match;
+import com.techdev.goalbuzz.core.datasource.local.db.database.DatabaseManager;
+import com.techdev.goalbuzz.core.datasource.local.db.entities.Match;
 import com.techdev.goalbuzz.receiver.NotificationPublisher;
-import com.techdev.goalbuzz.room.database.AppExecutors;
-import com.techdev.goalbuzz.room.database.RoomManager;
-import com.techdev.goalbuzz.room.model.Result;
-import com.techdev.goalbuzz.util.Constant;
-import com.techdev.goalbuzz.util.DateFormatter;
+import com.techdev.goalbuzz.core.util.AppExecutors;
+import com.techdev.goalbuzz.core.util.Constant;
+import com.techdev.goalbuzz.core.util.DateFormatter;
 
 import java.util.Calendar;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
 
-public class MatchScheduleService implements ScheduleService<Match> {
+public class MatchScheduleService implements ScheduleService<com.techdev.goalbuzz.featureMain.domain.models.Match> {
 
     private static MatchScheduleService instance;
 
@@ -37,10 +32,10 @@ public class MatchScheduleService implements ScheduleService<Match> {
     }
 
     @Override
-    public boolean schedule(Match match, Context context) {
+    public boolean schedule(com.techdev.goalbuzz.featureMain.domain.models.Match match, Context context) {
         AtomicBoolean _flag = new AtomicBoolean(false);
         AppExecutors.getInstance().diskIO().execute(() -> {
-            Result result = RoomManager.getInstance(context).resultDao().findById(match.getId());
+            Match result = DatabaseManager.getInstance(context).resultDao().findById(match.getId());
             if (result == null) {
                 // set match time as calender
                 Calendar calendar = Calendar.getInstance();
@@ -59,8 +54,8 @@ public class MatchScheduleService implements ScheduleService<Match> {
                 alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
                 // after scheduling for notification, insert the record into local db
                 // inside a background thread for performing the room task
-                RoomManager.getInstance(context).resultDao().insert(new Result(match));
-                result = RoomManager.getInstance(context).resultDao().findById(match.getId());
+                DatabaseManager.getInstance(context).resultDao().insert(new Match(match));
+                result = DatabaseManager.getInstance(context).resultDao().findById(match.getId());
             }
             _flag.compareAndSet(true, result != null);
         });
@@ -68,7 +63,7 @@ public class MatchScheduleService implements ScheduleService<Match> {
     }
 
     @Override
-    public void schedule(Match match, Context context, OnScheduleCallback onScheduleCallback) {
+    public void schedule(com.techdev.goalbuzz.featureMain.domain.models.Match match, Context context, OnScheduleCallback onScheduleCallback) {
         AppExecutors.getInstance().diskIO().execute(() -> {
             // set match time as calender
             Calendar calendar = Calendar.getInstance();
@@ -87,16 +82,16 @@ public class MatchScheduleService implements ScheduleService<Match> {
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
             // after scheduling for notification, insert the record into local db
             // inside a background thread for performing the room task
-            RoomManager.getInstance(context).resultDao().insert(new Result(match));
+            DatabaseManager.getInstance(context).resultDao().insert(new Match(match));
             onScheduleCallback.onScheduled();
         });
     }
 
     @Override
-    public void scheduleOrCancel(Match match, Context context, OnScheduleCallback onScheduleCallback, OnCancelCallback onCancelCallback) {
+    public void scheduleOrCancel(com.techdev.goalbuzz.featureMain.domain.models.Match match, Context context, OnScheduleCallback onScheduleCallback, OnCancelCallback onCancelCallback) {
         AppExecutors.getInstance().diskIO().execute(() -> {
             // check if match already in the schedule
-            Result result = RoomManager.getInstance(context).resultDao().findById(match.getId());
+            Match result = DatabaseManager.getInstance(context).resultDao().findById(match.getId());
             if (result == null){
                 schedule(match, context, onScheduleCallback);
             } else {
@@ -114,10 +109,10 @@ public class MatchScheduleService implements ScheduleService<Match> {
         am.cancel(pendingIntent);
         pendingIntent.cancel();
         AppExecutors.getInstance().diskIO().execute(() -> {
-            Result result = RoomManager.getInstance(context).resultDao().findById(eventId);
-            if (result != null){
-                RoomManager.getInstance(context).resultDao().delete(result);
-                _flag.set(RoomManager.getInstance(context).resultDao().findById(eventId) == null);
+            Match match = DatabaseManager.getInstance(context).resultDao().findById(eventId);
+            if (match != null){
+                DatabaseManager.getInstance(context).resultDao().delete(match);
+                _flag.set(DatabaseManager.getInstance(context).resultDao().findById(eventId) == null);
             }
         });
         return _flag.get();
@@ -131,9 +126,9 @@ public class MatchScheduleService implements ScheduleService<Match> {
         am.cancel(pendingIntent);
         pendingIntent.cancel();
         AppExecutors.getInstance().diskIO().execute(() -> {
-            Result result = RoomManager.getInstance(context).resultDao().findById(eventId);
-            if (result != null){
-                RoomManager.getInstance(context).resultDao().delete(result);
+            Match match = DatabaseManager.getInstance(context).resultDao().findById(eventId);
+            if (match != null){
+                DatabaseManager.getInstance(context).resultDao().delete(match);
                 onCancelCallback.onCanceled();
             }
         });

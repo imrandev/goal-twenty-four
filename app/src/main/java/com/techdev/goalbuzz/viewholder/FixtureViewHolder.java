@@ -10,7 +10,7 @@ import com.techdev.goalbuzz.core.adapter.BaseRecyclerViewHolder;
 import com.techdev.goalbuzz.databinding.ItemEmptyViewBinding;
 import com.techdev.goalbuzz.databinding.ItemFixtureBinding;
 import com.techdev.goalbuzz.model.fixture.Match;
-import com.techdev.goalbuzz.util.MatchUtil;
+import com.techdev.goalbuzz.core.util.MatchUtil;
 
 public class FixtureViewHolder extends BaseRecyclerViewHolder<Match, BaseRecyclerClickListener<Match>> {
 
