@@ -1,10 +1,5 @@
 # Goal24 - Football Live Scores, Standing & Fixtures
 
-<b>★★★ Download ★★★</b></br></br>
-<img width="150px" height="150px" src="https://play-lh.googleusercontent.com/8pkeSHqEZ5YPJK6wV41aoFQhZS6lslmr8YuwlRwks6wBHeacp49UteAnSqAXoz25NLAI=s180-rw" alt="Goal24"/>
-</br>
-<a href="">Download from Google Play Store</a>
-
 <b>★★★ App Screenshots ★★★</b>
 
 <p align="center">
